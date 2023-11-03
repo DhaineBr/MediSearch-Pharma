@@ -10,8 +10,13 @@
       <i class="fa fa-arrow-circle-o-left"></i></button
   ></a>
   <div class="container">
-    <form>
+    <form [formGroup]="userDataForm" (ngSubmit)="onSubmit()">
       <fieldset>
+        <div class="top">
+          <div class="map-container">
+            <div id="map"></div>
+          </div>
+        </div>
         <div class="left">
           <label for="firstName">Business Owner's First Name</label><br />
           <input
@@ -45,6 +50,7 @@
           <label for="openingTime">Opening Time</label><br />
           <input
             type="time"
+
             formControlName="openingTime"
             placeholder="Ex.: Juan"
           /><br />
@@ -74,7 +80,7 @@
 
       <div class="submit">
         <br />
-        <button type="submit" id="submitButton">Submit ></button>
+        <button class="rigisterBtn" type="submit" id="submitButton">Submit ></button>
       </div>
     </form>
   </div>
