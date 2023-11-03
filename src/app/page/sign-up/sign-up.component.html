@@ -1,0 +1,81 @@
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+
+<body>
+  <a routerLink="/"
+    ><button onclick="back()" id="backButton">
+      <i class="fa fa-arrow-circle-o-left"></i></button
+  ></a>
+  <div class="container">
+    <form>
+      <fieldset>
+        <div class="left">
+          <label for="firstName">Business Owner's First Name</label><br />
+          <input
+            type="text"
+            formControlName="firstName"
+            placeholder="Ex.: Juan"
+          /><br />
+
+          <label for="lastName">Business Owner's Last Name</label><br />
+          <input
+            type="text"
+            formControlName="lastName"
+            placeholder="Ex.: Dela Cruz"
+          /><br />
+
+          <label for="address">Store Address</label><br />
+          <input
+            type="text"
+            formControlName="address"
+            placeholder="Ex.: pharma@mail.com "
+          /><br />
+
+          <label for="contactNumber">Contact No.</label><br />
+          <input
+            type="number"
+            formControlName="contactNumber"
+            placeholder="Ex.: 09123456789"
+          /><br />
+        </div>
+        <div class="right">
+          <label for="openingTime">Opening Time</label><br />
+          <input
+            type="time"
+            formControlName="openingTime"
+            placeholder="Ex.: Juan"
+          /><br />
+
+          <label for="closingTime">Closing Time</label><br />
+          <input
+            type="time"
+            formControlName="closingTime"
+            placeholder="Ex.: Dela Cruz"
+          /><br />
+
+          <label for="email">Company Email</label><br />
+          <input
+            type="text"
+            formControlName="email"
+            placeholder="Ex.: pharma@mail.com "
+          /><br />
+
+          <label for="password">Password</label><br />
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="should be at least 9 characters."
+          /><br />
+        </div>
+      </fieldset>
+
+      <div class="submit">
+        <br />
+        <button type="submit" id="submitButton">Submit ></button>
+      </div>
+    </form>
+  </div>
+</body>

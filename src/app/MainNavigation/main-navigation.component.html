@@ -1,0 +1,65 @@
+<body>
+  <div class="sideNav">
+    <div class="container">
+      <div class="sideLogos">
+        <a
+          matTooltip="Dashboard"
+          routerLink="/home/dashboard"
+          class="sideButtons"
+          routerLinkActive="active"
+          class="sideButtons"
+          ><i class="fa-solid fa-chart-line"></i></a
+        ><br /><br />
+        <a
+          matTooltip="Sales & Inventory"
+          routerLink="/home/inventory"
+          class="sideButtons"
+          routerLinkActive="active"
+          class="sideButtons"
+          ><i class="fa-solid fa-cash-register"></i></a
+        ><br /><br />
+        <a
+          matTooltip="Reservations"
+          routerLink="/home/reservations"
+          class="sideButtons"
+          routerLinkActive="active"
+          class="sideButtons"
+          ><i class="fa-solid fa-list-check"></i></a
+        ><br /><br />
+        <a
+          matTooltip="History"
+          routerLink="/home/history"
+          class="sideButtons"
+          routerLinkActive="active"
+          class="sideButtons"
+          ><i class="fa-solid fa-clock-rotate-left"></i></a
+        ><br /><br />
+        <a
+          matTooltip="Archive"
+          routerLink="/home/archive"
+          class="sideButtons"
+          routerLinkActive="active"
+          class="sideButtons"
+          ><i class="fa-solid fa-box-archive"></i> </a
+        ><br /><br />
+        <a
+          matTooltip="Settings"
+          routerLink="/home/settings"
+          class="sideButtons"
+          routerLinkActive="active"
+          class="sideButtons"
+          ><i class="fa-solid fa-gear"></i></a>
+      </div>
+    </div>
+
+    <br /><br />
+    <div class="sideFooter">
+      <button matTooltip="Sign Out" class="signOut" routerLink="/login">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
+    </div>
+  </div>
+  <div class="router">
+    <router-outlet></router-outlet>
+  </div>
+</body>

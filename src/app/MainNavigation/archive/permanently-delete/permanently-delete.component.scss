@@ -1,0 +1,64 @@
+* {
+  text-align: center;
+  border-style: hidden;
+  outline: none;
+}
+
+h2  {
+  padding: 0 0 0 7.5%;
+}
+
+
+
+input[type="password"]  {
+  font-size: 1vw;
+  width: 80%;
+  padding: 2%;
+  margin: 0 0 2.5% 0;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 0.25rem 0.20rem -0.20rem;
+}
+
+.buttons  {
+  text-align: center;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
+}
+
+span  {
+  float: right;
+  height: 4vh;
+  margin: 0 3% 0 0;
+}
+
+button  {
+  font-size: 1.25vw;
+  opacity: 0.5;
+  color: #AA0441;
+  transition: all 0.5s ease;
+
+}
+
+button:hover  {
+  opacity: 1;
+}
+
+button[type="submit"] {
+  font-size: 1.5vw;
+  opacity: 0.75;
+  margin: auto;
+  background-color: #55665e;
+  color: white;
+  border-radius: 0.5rem;
+  transition: all 0.5s ease;
+  padding: 1% 2%;
+}
+
+button:hover  {
+  opacity: 1;
+}
+
+
+
+
+

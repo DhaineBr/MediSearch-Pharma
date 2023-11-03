@@ -1,0 +1,474 @@
+* {
+  outline: none;
+  border-style: hidden;
+}
+
+.point-of-sale  {
+  height: 80%;
+  position: absolute;
+}
+
+.inventory  {
+  margin: 80% 0 0 0 ;
+  height: 100%;
+  position: relative;
+}
+
+.container {
+    background-color: #F8F8EC;
+    width: 90%;
+    height: 93%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    border-radius: 0.5rem;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 53%;
+    z-index: 905;
+    overflow-y: scroll;
+  }
+
+
+  .transaction-window {
+    table-layout: auto;
+    width: 100%;
+
+  }
+
+
+
+
+
+  .clear  {
+    font-size: 1.5vw;
+    color: black;
+    background-color: transparent;
+    padding: 0 5% 0 15%;
+    transition: all 0.25s ease;
+    opacity: 0.25;
+  }
+
+  .minus  {
+    font-size: 1.5vw;
+    color: #AA0441;
+    background-color: transparent;
+    padding: 0 5% 0 5%;
+    transition: all 0.25s ease;
+    opacity: 0.5;
+  }
+
+  .plus  {
+    font-size: 1.5vw;
+    color: #04AA6D;
+    background-color: transparent;
+    padding: 0 5% 0 5%;
+    transition: all 0.25s ease;
+    opacity: 0.5;
+  }
+
+  .minus:hover, .plus:hover {
+    opacity: 1;
+  }
+
+  .clear:hover  {
+    background-color: transparent;
+    color: #AA0441;
+    opacity: 1;
+  }
+
+
+  .bottom-panel {
+    width: 100%;
+    padding: 5% 0;
+  }
+
+  .total  {
+    width: 60%;
+    float: left;
+    padding: 0 2% 2% 0.75%;
+    font-size: 1.5vw;
+  }
+
+  .confirm  {
+    width: 30%;
+    float: right;
+    text-align: right;
+    padding: 0 2% 2% 0;
+  }
+
+  .confirm-payment  {
+    color: white;
+    background-color: #04AA6D;
+    padding: 1% 5% 1.5% 5%;
+    font-size: 1.5vw;
+    opacity: 0.7;
+    border-radius: 0.35rem;
+    transition: all 0.25s ease;
+  }
+
+  .confirm-payment:hover  {
+    opacity: 1;
+  }
+
+  .left {
+    width: 50%;
+    float: left;
+    margin:  0 0 0 1%;
+    height: 75%;
+    border-radius: 0.25rem;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 0.5rem 1rem 0;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1%;
+  }
+
+  .left-header  {
+
+    font-size: 1.5vw;
+    width: 100%;
+    padding: 2% 1.5%;
+    color: #55665e;
+    font-weight: 600;
+  }
+
+  .left-content {
+
+    height: 15%;
+    padding: 0 2% 0 2%;
+    width: 20%;
+  }
+
+  .medicine-button  {
+    font-size: 1vw;
+    padding: 5%;
+    border-radius: 0.25rem;
+    text-align: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 0.15rem 0.25rem 0;
+    background-color: white;
+    color: #0441AA;
+    transition: all 0.25s ease;
+    width: 100%;
+
+  }
+
+  .medicine-button:hover {
+    color: white;
+    background-color: #0441AA;
+    box-shadow: none;
+  }
+
+  .right  {
+    width: 43%;
+    float: right;
+    margin: 0 1% 0 0;
+    border-radius: 0.25rem;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 0.5rem 1rem 0;
+    height: 75%;
+    padding: 1%;
+    overflow-y: scroll;
+    text-align: center;
+  }
+
+  .header {
+    font-size: 4vw;
+    font-weight: 700;
+    width: 95%;
+    padding: 1% 2%;
+    color: #55665e;
+
+  }
+
+
+
+  .topnav {
+      padding: 1% 1.25%;
+      z-index: 9999;
+      margin: 0 0 5% 0;
+    }
+
+    .add-button {
+      font-size: 2vw;
+      border-radius: 50%;
+      background-color: #04AA6D !important;
+      color: white;
+      border-style: none;
+      transition: all 0.3s ease;
+      transform: scale(1);
+      float: left;
+      width: 100%;
+    }
+
+    .add {
+      text-align: left;
+      width: 3%;
+      padding: 2% 0 2% 0.5%;
+      margin-bottom: 10%;
+      margin-top: 0;
+      margin: auto;
+      float: left;
+      z-index: 100000;
+
+    }
+
+
+  .content  {
+    width: 97%;
+    text-align: center;
+    padding: 0 0 2% 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+  }
+
+
+
+
+  th, td  {
+    padding: 1% 0 1% 0.5%;
+  }
+
+  th  {
+    background-color: white;
+  }
+
+  .medicine-list-container {
+    width: 100%;
+    overflow-y: auto;
+    background-color: transparent;
+    border-radius: 0.25rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 1rem 3rem 0;
+    background-color: white;
+    height: 70vh;
+  }
+
+  .medicine-list  {
+    width: 100%;
+    table-layout: auto;
+    margin: auto;
+    z-index: 902;
+    overflow-y: scroll;
+  }
+
+  .table-header {
+    font-size: 1.75vw;
+    color: #55665e;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    text-align: left;
+
+  }
+
+  #barcode-scanner  {
+    margin: auto;
+    position: sticky !important;
+    outline: none;
+    padding: 2%;
+    text-align: center;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background-color: #eaf0fd;
+    transition: all 0.25s ease;
+    color: transparent;
+  }
+
+  #barcode-scanner:hover  {
+    background-color: white;
+    border-style: solid;
+    border-width: 0.5vh;
+    border-color: #0441AA;
+  }
+
+  .table-content  {
+    text-align: left;
+    font-size: 1.5vw;// ays na
+
+    font-weight: 400;
+top: 20;
+
+    overflow: hidden; /* Hide overflow in table cells */
+    text-overflow: ellipsis;
+    color: black;
+  }
+
+
+
+
+    .topnav .search-container {
+      float: right;
+      display: flex;
+      align-items: center;
+      width: 50%;
+
+      margin: 0 0 0 0;
+    }
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    .topnav input[type="text"] {
+      padding: 2% 0 2% 1%;
+      border: none;
+      margin-right: 0;
+      font-size: 1.5vw;
+      border-radius: 0.25rem 0 0 0.25rem;
+      box-shadow: rgba(100, 100, 111, 0.2) 0 0.5rem 1rem 0;
+      outline: none;
+      width: 90%;
+
+    }
+
+    /* Align the button to the right */
+    .topnav button {
+      float: right;
+      padding: 1%;
+      border: none;
+      background-color: transparent;
+    }
+
+
+
+    button:hover {
+      cursor: pointer;
+    }
+
+    #searchButton {
+      background-color: #04AA6D;
+      border-radius: 0 0.25rem 0.25rem 0;
+      font-size: 1.5vw;
+      padding: 2% 2% 2% 1%;
+      margin: 0 0 0 0;
+      width:10%;
+      height: inherit;
+      box-shadow: rgba(100, 100, 111, 0.2) 0 0.5rem 1rem 0;
+    }
+
+
+    #checkBox:hover {
+      cursor: pointer;
+      background-color: #ccc;
+    }
+
+    #edit, #delete{
+      background-color: transparent;
+
+      margin: 0 10% 0 10%;
+      font-size: 1.75vw;
+      transition: all 0.3s ease;
+      transform: scale(1);
+    }
+
+    #edit {
+      color: #0441AA;
+    }
+
+    #delete {
+      color: #AA0441;
+    }
+
+
+    #edit:hover, #delete:hover, .add-button:hover  {
+      transform: scale(1.3);
+    }
+
+
+
+
+
+
+
+  .delete-button:hover  {
+    transform: scale(1.3);
+  }
+
+
+  .reset  {
+    opacity: 0.25;
+    transition: all 0.5s ease;
+    font-size: 1.5vw;
+    color: black;
+    background-color: transparent;
+    margin: 0 5%;
+  }
+
+  .reset:hover  {
+    opacity: 1;
+    color: #AA0441;
+  }
+
+
+
+
+
+
+
+
+
+
+
+    /* For Chrome, Safari, and Opera */
+  .medicine-list-container::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+
+  .medicine-list-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+
+  .medicine-list-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+  }
+
+  /* For Firefox */
+  .medicine-list-container {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+  }
+
+  .medicine-list-container::-moz-scrollbar {
+    width: 0.25rem;
+  }
+
+  .medicine-list-container::-moz-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+
+  .medicine-list-container::-moz-scrollbar-thumb {
+    background-color: #888;
+  }
+
+
+  .container::-webkit-scrollbar {
+    width: 0.25rem;
+    background-color: transparent;
+  }
+
+  .container::-webkit-scrollbar-thumb {
+    background-color: #C0C0C0;
+    border-radius: 0.25rem;
+  }
+
+  .container::-webkit-scrollbar-thumb:hover {
+    background-color: #A9A9A9;
+  }
+
+  .right::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+
+  .right::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+
+  .right::-webkit-scrollbar-thumb {
+    background-color: #888;
+  }
+
+

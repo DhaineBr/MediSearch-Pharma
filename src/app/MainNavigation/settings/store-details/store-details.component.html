@@ -1,0 +1,57 @@
+<div class="header">
+  <div class="left"><h2>Edit Store Details</h2></div>
+  <div class="right"><mat-dialog-actions><button mat-dialog-close class="close-button"><i class="fa-solid fa-circle-xmark"></i></button></mat-dialog-actions></div>
+</div>
+<mat-dialog-content>
+  <form>
+    <div class="inputs">
+      <div class="top">
+      <div class="img-container" (click)="fileInput.click()">
+        <i class="fa-solid fa-plus" *ngIf="!image"></i>
+        <img [src]="image" class="img-input" alt="Selected Image" *ngIf="image" />
+      </div>
+      <div class="input-container" >
+        <input
+          type="file"
+          name="post-img-input"
+          id="post-img-input"
+          accept=".png, .jpeg, .jpg"
+          (change)="onFileSelected($event)"
+          #fileInput
+          style="display: none;"
+        />
+      </div>
+
+      </div>
+      <div class="sub-left">
+        <label for="firstName">First Name</label><br>
+        <input type="text" name="firstName" id="firstName"><br>
+        <label for="lastName">Last Name</label><br>
+        <input type="text" name="lastName" id="lastName"><br>
+        <label for="companyName">Company Name</label><br>
+        <input type="text" name="companyName" id="companyName"><br>
+      </div>
+
+      <div class="sub-right">
+        <label for="address">Address</label><br>
+        <input type="text" name="address" id="address"><br>
+        <label for="contactNumber">Contact No.</label><br>
+        <input type="text" name="contactNumber" id="contactNumber"><br>
+        <div class="left-two">
+          <label for="openingTime">Opening Time</label><br>
+          <input type="time" name="openingTime" id="openingTime"><br>
+        </div>
+        <div class="right-two">
+          <label for="closingTime">Closing Time</label><br>
+          <input type="time" name="closingTime" id="closingTime"><br>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button type="submit" (click)="saveChanges()">Confirm</button>
+    </div>
+  </form>
+
+
+</mat-dialog-content>

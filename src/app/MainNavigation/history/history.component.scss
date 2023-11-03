@@ -1,0 +1,196 @@
+.container {
+    border-style: hidden;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    height: 93%;
+    margin: auto;
+    background-color: #F8F8EC;
+    border-radius: 0.5rem;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 53%;
+    z-index: 9999;
+    overflow: hidden;
+  }
+
+  .header {
+    font-size: 4vw;
+    border-style: hidden;
+    font-weight: 700;
+    width: 95%;
+    padding: 1% 2%;
+    color: #55665e;
+  }
+
+
+  .summary  {
+    border-style: hidden;
+  }
+
+
+  .topnav {
+    background-color: transparent;
+    border-style: hidden;
+    z-index: 10000;
+    position: relative;
+    top: 5%;
+    left: 2.5%;
+    right: 0;
+    width: 95%;
+  }
+
+
+  .content  {
+    width: 100%;
+    border-style: hidden;
+    text-align: center;
+    z-index: 901;
+    margin-top: 2.5%;
+    margin-bottom: 5%;
+    height: 130%;
+  }
+
+
+
+
+  /* Style the search box inside the navigation bar */
+  .topnav .search-container {
+    float: right;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    border-style: hidden;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  .topnav input[type="text"] {
+    padding: 2% 0 2% 1%;
+    border: none;
+    margin-right: 0;
+    font-size: 1.5vw;
+    border-radius: 0.25rem 0 0 0.25rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 0.5rem 1rem 0;
+    outline: none;
+    width: 90%;
+  }
+
+  /* Align the button to the right */
+  .topnav button {
+    float: right;
+    padding: 1%;
+    border: none;
+    background-color: transparent;
+  }
+
+
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  #searchButton {
+    background-color: #04AA6D;
+    border-radius: 0 0.25rem 0.25rem 0;
+    font-size: 1.5vw;
+    padding: 2% 2% 2% 1%;
+    margin: 0 0 0 0;
+    width:10%;
+    height: inherit;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 0.5rem 1rem 0;
+  }
+
+
+
+
+  th, td  {
+    padding: 1% 0 1% 1%;
+  }
+
+  th  {
+    background-color: white;
+  }
+
+  .history-container {
+    width: 95%;
+    height: 57.5vh;
+    overflow-y: auto;
+    background-color: transparent;
+    border-radius: 0.25rem;
+    border-style: hidden;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 1rem 2rem 0;
+    margin: auto;
+    margin-top: 2%; /* Increase the top margin */
+    margin-bottom: 0;
+    background-color: white;
+  }
+
+  .history-list  {
+    width: 100%;
+    table-layout: auto;
+    border-style: hidden;
+    margin: auto;
+  }
+
+  .table-header {
+    font-size: 2vw;
+    color: #55665e;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: transparent;
+    text-align: left
+  }
+
+
+  .table-content  {
+    text-align: left;
+    font-size: 1.5vw;
+    font-weight: 100;
+    color: black;
+  }
+
+
+  #details, #delete {
+    background-color: transparent;
+    border-style: hidden;
+    margin: 0 10% 0 10%;
+    font-size: 1.75vw;
+    transition: all 0.3s ease;
+    transform: scale(1);
+  }
+
+
+  .history-container::-webkit-scrollbar {
+    width: 0.25rem;
+    background-color: transparent;
+  }
+
+  .history-container::-webkit-scrollbar-thumb {
+    background-color: #C0C0C0;
+    border-radius: 0.25rem;
+  }
+
+  .history-container::-webkit-scrollbar-thumb:hover {
+    background-color: #A9A9A9;
+  }
+
+
+
+  .container::-webkit-scrollbar {
+    width: 0.25rem;
+    background-color: transparent;
+  }
+
+  .container::-webkit-scrollbar-thumb {
+    background-color: #C0C0C0;
+    border-radius: 0.25rem;
+  }
+
+  .container::-webkit-scrollbar-thumb:hover {
+    background-color: #A9A9A9;
+  }

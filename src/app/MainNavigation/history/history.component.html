@@ -1,0 +1,40 @@
+
+<div class="container">
+  <div class="summary">
+    <div class="header">History</div>
+  </div>
+
+  <div class="topnav">
+    <div class="search-container">
+      <!-- [(ngModel)]="searchText" add later -->
+      <input type="text" placeholder="Search.." [(ngModel)]="searchQuery" (input)="filterHistory()"/>
+      <button id="searchButton">
+        <i class="fa-solid fa-magnifying-glass" style="color: white; font-size: 1.25vw"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="history-container">
+      <table class="history-list">
+        <tr class="table-header">
+          <th>Reference No.</th>
+          <th>Name</th>
+          <th>Contact No.</th>
+          <th>Date & Time</th>
+          <th>Amount</th>
+        </tr>
+        <tr *ngFor="let record of filteredHistoryRecords" class="table-content">
+          <td>{{ record.referenceNo }}</td>
+          <td>{{ record.name }}</td>
+          <td>{{ record.contactNo }}</td>
+          <td>{{ record.dateTime }}</td>
+          <td>{{ record.amount }}</td>
+          <td>
+
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

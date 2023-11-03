@@ -1,0 +1,22 @@
+<h2>Are you sure?
+  <span>
+    <button mat-button (click)="closeDialog()"><i class="fa-solid fa-circle-xmark"></i></button>
+  </span>
+</h2>
+
+<mat-dialog-content>
+  <p>By entering your password, the selected products would be permanently deleted. You won't be able to revert the changes.</p>
+</mat-dialog-content>
+
+<form [formGroup]="passwordForm">
+  <div class="password-group">
+    <input type="password" id="password" formControlName="password" placeholder="Confirm Password"><br>
+  </div>
+  <div>
+    <mat-dialog-actions>
+      <div class="buttons">
+        <button (click)="permanentlyDelete()">Confirm</button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</form>

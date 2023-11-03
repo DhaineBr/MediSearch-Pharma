@@ -1,0 +1,50 @@
+<div class="container">
+
+  <div class="reservation">
+      <div class="header">Reservations</div>
+
+    <div class="topnav">
+      <div class="search-container">
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          placeholder="Search.."
+          (input)="filterReservations()"
+        />
+
+        <button id="searchButton">
+          <i class="fa-solid fa-magnifying-glass" style="color: white; font-size: 1.25vw"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="reservation-list-container">
+        <table class="reservation-list">
+          <tr class="table-header">
+            <th>Order ID</th>
+            <th>Name</th>
+            <th>Order</th>
+            <th>Contact No.</th>
+            <th>Date & Time</th>
+            <th>Total Price</th>
+            <th>Action</th>
+          </tr>
+          <ng-container *ngFor="let reservation of filteredReservations">
+            <tr class="table-content">
+              <td style="font-weight: 500;">{{ reservation.orderId }}</td>
+              <td>{{ reservation.name }}</td>
+              <td>{{ reservation.order }}</td>
+              <td>{{ reservation.contactNo }}</td>
+              <td>{{ reservation.dateTime }}</td>
+              <td>P {{ reservation.totalPrice }}</td>
+              <td>
+                <button id="confirm"><i class="fa fa-check-circle"></i></button>
+              </td>
+            </tr>
+          </ng-container>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

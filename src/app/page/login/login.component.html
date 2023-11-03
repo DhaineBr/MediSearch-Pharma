@@ -1,0 +1,57 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+
+<div class="container">
+  <fieldset>
+    <legend><img src="./../../assets/MediSearch logo.png" id="logo" /></legend>
+    <form [formGroup]="loginForm">
+      <input
+        type="email"
+        formControlName="email"
+        name="email_ad"
+        placeholder="Email"
+      />
+      <br />
+      <input
+        type="password"
+        formControlName="password"
+        name="password"
+        placeholder="Password"
+      />
+      <br />
+      <a routerLink="/home/dashboard"><button id="loginButton">Login</button></a>
+    </form>
+  </fieldset>
+  <div class="extension">
+    <div>
+      <ng-container *ngIf="!showInputField">
+        <button (click)="showInputField = true" class="button-transition">
+          Forgot Password?
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="showInputField">
+        <input
+          type="email"
+          (blur)="showInputField = false"
+          autofocus
+          class="input-transition"
+          placeholder="Email"
+        />
+        <input
+          type="submit"
+          (blur)="showInputField = false"
+          autofocus
+          class="submit-transition"
+        />
+      </ng-container>
+    </div>
+    <br />
+    <label for="signUp" style="font-size: 1vw"></label>
+    <p>
+      Don't have an account? <a routerLink="/signup" id="signUp">Sign Up</a>
+    </p>
+  </div>
+</div>

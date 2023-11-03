@@ -1,0 +1,199 @@
+* {
+    font-family: Idealist Sans;
+}
+
+body {
+    background-color: #f5f9f6;
+}
+
+.container  {
+  width: 100%
+}
+
+fieldset {
+    width: 50%;
+    text-align: center;
+    border-style: hidden;
+    background-color: #55665e;
+    border-radius: 20px;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px 10px;
+}
+
+input[type="email"], input[type="password"] {
+    font-size: 2vw;
+    padding: 1%;
+    margin: 1%;
+    border-style: hidden;
+    border-radius: 10px;
+    width: 50%;
+}
+
+
+.extension  {
+    width: 50%;
+    text-align: center;
+    justify-content: center;
+    margin: 5% 15% 0% 15%;
+    border-style: hidden;
+    color:  #55665e;
+    font-size: 1.25vw;
+    position: relative;
+    z-index: 1;
+}
+
+#signUp {
+    border-style: hidden;
+    background-color: transparent;
+    text-decoration: underline;
+    color: black;
+    margin-bottom: 1%;
+}
+
+#loginButton {
+    font-size: 2vw;
+    margin: 3% 0 4% 0;
+    padding: 1% 2% 1% 2%;
+    border-style: hidden;
+    border-radius: 10px;
+    background-color: #04aa6d;
+    color: white;
+    transition: all 0.5s ease;
+    transform: scale(1);
+}
+
+#loginButton:hover {
+    transform: scale(1.1);
+    border-style: hidden;
+    color: #04aa6d;
+    background-color: white;
+}
+
+button:hover, #loginButton:hover, .submit-transition {
+    cursor: pointer;
+}
+
+#logo {
+  width: 25%;
+  background-color: transparent;
+  padding: 0;
+  margin-bottom: 5%;
+  filter: drop-shadow(0.05rem 0rem 0.25rem #55665e)
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+::placeholder { 
+    color: black;
+    opacity: 0.5; 
+    font-weight: 50;
+  }
+
+
+
+
+
+
+  .button-transition {
+    animation: revealInput 0.5s forwards;
+    border-style: hidden;
+    font-size: 1.5vw;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  .input-transition {
+    animation: revealInput 0.5s forwards;
+    opacity: 0;
+    width: 0;
+    transition: opacity 0.5s, width 0.5s;
+    font-size: 1.25vw;
+    text-align: center;
+    border-style: hidden;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px -5px 30px 10px;
+    padding: 2% 0 2% 0; 
+  }
+  
+  @keyframes revealInput {
+    0% {
+      opacity: 0;
+      width: 0;
+    }
+  
+    100% {
+      opacity: 1;
+      width: 50%;
+    }
+  }
+
+  .submit-transition {
+    animation: revealButton 0.5s forwards;
+    opacity: 0;
+    width: 0;
+    transition: opacity 0.5s, width 0.5s;
+    font-size: 1.25vw;
+    text-align: center;
+    border-style: hidden;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px -5px 30px 10px;
+    padding: 2% 0 2% 0; 
+    margin: 0 2% 0 2%;
+    color: white;
+    background-color: #04aa6d;
+    font-weight: 100;
+  }
+
+
+  .submit-transition:hover {
+    color: #04aa6d;
+    background-color: white;
+    font-weight: 100;
+  }
+
+  @keyframes revealButton {
+    0% {
+        opacity: 0;
+        width: 12%;
+      }
+    
+      100% {
+        opacity: 1;
+        width: 12%;
+      }
+  }
+  
+  input {
+    outline: none;
+  }
+
+i{
+  float:right;
+  font-size: 4vw;
+  margin: 45% 0 10% 90%;
+  color: #55665e;
+  position: absolute;
+  z-index: 2;
+  transition: all 0.5s ease;
+  transform: scale(1);
+}
+
+i:hover {
+  transform: scale(1.5);
+  color: #04aa6d;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: #04aa6d;
+}

@@ -1,0 +1,116 @@
+
+.sideNav {
+  width: 5%;
+  float: left;
+  height: 100%;
+  padding: 5% 2% 0 2%;
+  color: white;
+  font-size: 2vw;
+  font-weight: 90;
+  overflow: hidden;
+  text-align: center;
+  background-color: transparent;
+}
+
+body  {
+  display: flex;
+  background-image: linear-gradient(to right, #6BBD99 , #C4E8C2);
+  position: relative;
+  max-height: 100%;
+  overflow-y: hidden;
+  z-index: 997;
+}
+
+
+
+
+.signOut {
+  width: 100%;
+  border-style: hidden;
+  text-align: center;
+  border-radius: 0.5rem;
+  background-color: #F8F8EC;
+  font-size: 3vw;
+  color: #AA0441;
+  transition: all 0.3s ease;
+  transform: scale(1);
+  position: relative;
+  z-index: 99999;
+}
+
+.sideFooter {
+  text-align: center;
+  width: 100%;
+  padding: 0;
+}
+
+.signOut:hover {
+  background-color: #AA0441;
+  color: #F8F8EC;
+  transform: scale(1.25);
+  box-shadow: none;
+}
+
+
+* {
+  text-decoration: none;
+}
+
+.sideButtons {
+  color: #F8F8EC;
+  font-size: 3vw;
+  margin: 2% 0 20% 0;
+  background-color: transparent;
+  border-style: hidden;
+  transition: all 0.3s ease;
+}
+
+.sideButtons:hover  {
+  color: #55665e;
+}
+
+.sideButtons i {
+  transition: all 0.5s ease;
+  transform: scale(1);
+}
+
+.sideButtons i:hover  {
+  transform: scale(1.25)
+}
+
+
+.container {
+  display: flex;
+}
+
+
+#menu {
+  font-size: 1.75vw;
+  background-color: transparent;
+  border-style: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+
+a.sideButtons.active {
+  background-color: #F8F8EC;
+  color: #55665e;
+  border-style: solid;
+  border-color: #F8F8EC;
+  width:100%;
+  padding: 30% 60% 30% 40%;
+  border-radius: 0.5rem 0 0 0.5rem;
+  margin:auto;
+  position: relative;
+  text-shadow: none;
+}
+
+
+
+
+.custom-tooltip {
+  z-index: 999999 !important; /* Set your desired z-index value */
+}

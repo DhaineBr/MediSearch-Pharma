@@ -1,0 +1,117 @@
+<body>
+  <div class="container">
+    <div class="point-of-sale">
+      <div class="header">Sales</div>
+      <div class="left">
+        <div class="left-header">
+          Best Sellers
+        </div>
+        <ng-container *ngFor="let inventory of inventories">
+          <div class="left-content">
+            <button class="medicine-button" (click)="selectMedicine(inventory)">{{ inventory.productName }}</button>
+
+
+
+
+
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="right">
+        <input type="text" id="barcode-scanner" (input)="handleBarcodeScan($event)" placeholder="Scan Barcode" autofocus>
+      <form>
+        <table class="transaction-window">
+          <tr class="table-header">
+            <th style="width: 40%">Product</th>
+            <th style="width: 20%">Price</th>
+            <th style="width: 15%">Quantity</th>
+            <th style="width: 25%">Action</th>
+          </tr>
+
+
+      <tr class="table-content" *ngFor="let selectedMedicine of selectedMedicines; let i = index">
+  <td>{{ selectedMedicine.productName }}</td>
+  <td>{{ selectedMedicine.price }}</td>
+  <td >
+    {{ inputQuantities[i] }}
+  </td>
+  <td >
+    <button (click)="decrementQuantity(i)" class="minus"><i class="fa-solid fa-minus"></i></button>
+    <button (click)="incrementQuantity(i)" class="plus"><i class="fa-solid fa-plus"></i></button>
+    <button class="clear" (click)="removeMedicine(i)"><i class="fa fa-close"></i></button>
+  </td>
+</tr>
+
+
+
+
+        </table>
+
+        <div class="bottom-panel">
+          <div class="total"><span style="font-weight: 600; color: #55665e">Total:
+            {{ calculateTotalPrice() | currency: 'PHP' }}
+          </span> </div>
+
+          <div class="confirm">
+            <button class="reset" (click)="clearSelectedMedicines()">Reset</button>
+            <button class="confirm-payment">Pay</button></div>
+        </div>
+      </form>
+      </div>
+    </div>
+    <div class="inventory">
+      <div class="header">Inventory</div>
+      <div class="topnav">
+        <div class="add">
+          <button class="add-button" matTooltip="Add Product"  mat-raised-button (click)="openAdd()">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <div class="search-container">
+          <input type="text" placeholder="Search.." [(ngModel)]="searchQuery" (input)="filterInventory()"/>
+          <button id="searchButton">
+            <i class="fa-solid fa-magnifying-glass" style="color: white; font-size: 1.25vw"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="medicine-list-container">
+          <table class="medicine-list">
+            <tr class="table-header">
+              <th>Item No.</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Expiration Date</th>
+              <th>Action</th>
+            </tr>
+
+            <ng-container *ngFor="let inventory of filteredInventory">
+              <tr class="table-content">
+                <td>{{inventory.itemNo}}</td>
+                <td>{{inventory.productName}}</td>
+                <td>{{inventory.quantity}}</td>
+                <td>{{inventory.price}}</td>
+                <td>{{inventory.expirationDate | date}}</td>
+
+
+                <td>
+                  <button id="edit"  matTooltip="Edit" (click)="openEdit(inventory)">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button id="delete"  matTooltip="Archive">
+                    <i class="fa-solid fa-box-archive"></i>
+                  </button>
+                </td>
+              </tr>
+
+            </ng-container>
+          </table>
+        </div>
+
+      </div>
+      </div>
+    </div>
+</body>
