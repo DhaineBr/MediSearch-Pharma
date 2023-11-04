@@ -10,17 +10,19 @@ import { ArchiveComponent } from './archive/archive.component';
 
 
 const routes: Routes = [
-  {path: 'home', 
-    component: MainNavigationComponent, 
-  children:  [
-    {path: 'dashboard', component: HomeComponent},
-    {path: 'inventory', component: InventoryComponent},
-    {path: 'reservations', component: ReservationsComponent},
-    {path: 'history' , component: HistoryComponent},
-    {path: 'settings', component: SettingsComponent},
-    {path: 'archive', component: ArchiveComponent}
-  ]},
-  
+  {
+    path: '',
+    component: MainNavigationComponent,
+    children: [
+      { path: 'dashboard', component: HomeComponent },
+      { path: 'inventory', component: InventoryComponent },
+      { path: 'reservations', component: ReservationsComponent },
+      { path: 'history', component: HistoryComponent },
+      { path: 'settings', component: SettingsComponent },
+      { path: 'archive', component: ArchiveComponent }
+    ]
+  },
+
 ];
 
 @NgModule({

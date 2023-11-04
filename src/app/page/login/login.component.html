@@ -1,27 +1,14 @@
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 <div class="container">
   <fieldset>
     <legend><img src="./../../assets/MediSearch logo.png" id="logo" /></legend>
     <form [formGroup]="loginForm" (ngSubmit)="requestLogin()">
-      <input
-        type="email"
-        formControlName="email"
-        name="email_ad"
-        placeholder="Email"
-      />
+      <input type="email" formControlName="email" name="email_ad" placeholder="Email" />
       <br />
-      <input
-        type="password"
-        formControlName="password"
-        name="password"
-        placeholder="Password"
-      />
+      <input type="password" formControlName="password" name="password" placeholder="Password" />
       <br />
-      <a routerLink="/home/dashboard"><button id="loginButton" type="submit" (click)="login()">Login</button></a>
+      <button id="loginButton" type="submit" (click)="login()">Login</button>
     </form>
   </fieldset>
   <div class="extension">
@@ -33,19 +20,8 @@
       </ng-container>
 
       <ng-container *ngIf="showInputField">
-        <input
-          type="email"
-          (blur)="showInputField = false"
-          autofocus
-          class="input-transition"
-          placeholder="Email"
-        />
-        <input
-          type="submit"
-          (blur)="showInputField = false"
-          autofocus
-          class="submit-transition"
-        />
+        <input type="email" (blur)="showInputField = false" autofocus class="input-transition" placeholder="Email" />
+        <input type="submit" (blur)="showInputField = false" autofocus class="submit-transition" />
       </ng-container>
     </div>
     <br />

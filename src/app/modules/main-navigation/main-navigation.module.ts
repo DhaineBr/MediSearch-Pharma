@@ -25,6 +25,8 @@ import { StoreDetailsComponent } from './settings/store-details/store-details.co
 import { AccountDetailsComponent } from './settings/account-details/account-details.component';
 import { RestoreItemsComponent } from './archive/restore-items/restore-items.component';
 import { PermanentlyDeleteComponent } from './archive/permanently-delete/permanently-delete.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpBaseInterceptor } from 'src/app/shared/interceptors/http-base.interceptor';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,9 @@ import { PermanentlyDeleteComponent } from './archive/permanently-delete/permane
     MatNativeDateModule,
     ReactiveFormsModule,
     MatDividerModule
+  ],
+  providers: [
+
   ]
 })
 export class MainNavigationModule { }
