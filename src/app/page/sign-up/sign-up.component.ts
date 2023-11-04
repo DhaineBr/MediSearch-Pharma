@@ -21,51 +21,33 @@ export class SignUpComponent {
   constructor(private router: Router, private HttpClientService: HttpClientService) {
     // Initialize the form group with form controls
     this.userDataForm = new FormGroup({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
-      address: new FormControl(''),
-      contactNumber: new FormControl(''),
-      openingTime: new FormControl(''),
-      closingTime: new FormControl(''),
+      name: new FormControl(''),
+      // lastName: new FormControl(''),
       email: new FormControl(''),
+      address: new FormControl(''),
+      coords: new FormControl(''),
+      storeHours: new FormControl(''),
+      contactNumber: new FormControl(''),
       password: new FormControl(''),
+
     });
   }
 
 
 onSubmit() {
-  if (this.userDataForm) {
-    const openingTime = this.userDataForm.get('openingTime')?.value;
-    const closingTime = this.userDataForm.get('closingTime')?.value;
+//   const formData = this.userDataForm.value;
 
-    if (openingTime && closingTime) {
-      const concatenatedTime = `${openingTime} - ${closingTime}`;
+//   this.HttpClientService.registerData(formData).then(response => {
+//     console.log('User registered successfully');
 
-
-      const userData = {
-        ...this.userDataForm.value,
-        time: concatenatedTime
-
-      };
-
-
-
-      // api call
-      // this.HttpClientService.registerData(userData).then(response => {
-      //   console.log('User registered successfully');
-
-      //   this.router.navigate(['/login']);
-      // }).catch(error => {
-      //   console.error('Error during user registration:', error);
-      // });
-
-      console.log(this.userDataForm.value)
-     console.log(concatenatedTime);
-    }
+//     console.log(this.userDataForm.value)
+//   }).catch(error => {
+//     console.error('Error during user registration:', error);
+//       console.log(this.userDataForm.value)
+//   });
+//     console.log(this.userDataForm.value)
+// }
   }
-}
-
-
 }
 
 

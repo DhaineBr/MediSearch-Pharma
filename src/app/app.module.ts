@@ -8,7 +8,7 @@ import { SignUpComponent } from './page/sign-up/sign-up.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainNavigationModule } from './MainNavigation/main-navigation.module';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,7 +24,8 @@ import { MainNavigationModule } from './MainNavigation/main-navigation.module';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    MainNavigationModule
+    MainNavigationModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
