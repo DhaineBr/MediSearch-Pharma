@@ -20,8 +20,8 @@ export class SettingsComponent {
 
   editAccount() {
     this.dialog.open(AccountDetailsComponent, {
-      width: '30%',
-      height: '80%',
+      width: '50vh',
+      height: '65vh',
     });
   }
 

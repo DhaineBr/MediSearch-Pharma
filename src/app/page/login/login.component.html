@@ -6,7 +6,7 @@
 <div class="container">
   <fieldset>
     <legend><img src="./../../assets/MediSearch logo.png" id="logo" /></legend>
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm" (ngSubmit)="requestLogin()">
       <input
         type="email"
         formControlName="email"
@@ -21,7 +21,7 @@
         placeholder="Password"
       />
       <br />
-    <button id="loginButton" type="submit" (click)="login()">Login</button>
+      <a routerLink="/home/dashboard"><button id="loginButton" type="submit" (click)="login()">Login</button></a>
     </form>
   </fieldset>
   <div class="extension">

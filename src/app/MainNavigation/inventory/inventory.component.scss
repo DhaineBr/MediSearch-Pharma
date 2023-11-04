@@ -4,13 +4,13 @@
 }
 
 .point-of-sale  {
-  height: 80%;
+  height: 97.5vh;
   position: absolute;
 }
 
 .inventory  {
-  margin: 80% 0 0 0 ;
-  height: 100%;
+  margin: 90vh 0 0 0 ;
+  height: 100vh;
   position: relative;
 }
 
@@ -28,18 +28,31 @@
     left: 53%;
     z-index: 905;
     overflow-y: scroll;
+    overflow-x: hidden;
   }
 
+  .table-container  {
+    height: 37.5vh;
+    overflow-y: scroll;
+    border-radius: 0.5rem;
+    background-color: white;
+    box-shadow: #55665e 0rem 0.0625rem 0.25rem, #55665e 0rem 0rem 0rem 0.05rem;
+  }
 
   .transaction-window {
     table-layout: auto;
     width: 100%;
-
+    max-height: 20vh;
   }
 
-
-
-
+  .top  {
+    height: 7.5vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding: 0 0 2.5%;
+  }
 
   .clear  {
     font-size: 1.5vw;
@@ -82,30 +95,49 @@
   .bottom-panel {
     width: 100%;
     padding: 5% 0;
+    bottom: 0;
   }
 
-  .total  {
-    width: 60%;
+  .total, .change  {
+    width: 80%;
     float: left;
-    padding: 0 2% 2% 0.75%;
+    padding: 0 2% 2% 15%;
     font-size: 1.5vw;
+    text-align: left;
   }
 
-  .confirm  {
-    width: 30%;
+  span  {
+    font-size: 1.5vw;
+    text-align: left;
+  }
+
+  .payment  {
+    width: 60%;
     float: right;
-    text-align: right;
-    padding: 0 2% 2% 0;
+    justify-content: right;
+    align-items: right;
+    padding: 0;
   }
 
   .confirm-payment  {
     color: white;
     background-color: #04AA6D;
-    padding: 1% 5% 1.5% 5%;
+    padding: 1.5% 5%;
     font-size: 1.5vw;
-    opacity: 0.7;
+    opacity: 0.5;
     border-radius: 0.35rem;
     transition: all 0.25s ease;
+    float: right;
+  }
+
+  .payment-input  {
+    border-style: solid;
+    padding: 1%;
+    font-size: 1.5vw;
+    width: 40%;
+    border-radius: 0.5rem;
+    float: left;
+    margin: 0 0 0 27.5%;
   }
 
   .confirm-payment:hover  {
@@ -152,7 +184,6 @@
     color: #0441AA;
     transition: all 0.25s ease;
     width: 100%;
-
   }
 
   .medicine-button:hover {
@@ -212,9 +243,7 @@
       margin: auto;
       float: left;
       z-index: 100000;
-
     }
-
 
   .content  {
     width: 97%;
@@ -224,9 +253,6 @@
     margin-right: auto;
     z-index: 1;
   }
-
-
-
 
   th, td  {
     padding: 1% 0 1% 0.5%;
@@ -260,7 +286,6 @@
     position: sticky;
     top: 0;
     z-index: 1;
-    background-color: white;
     text-align: left;
 
   }
@@ -287,25 +312,19 @@
 
   .table-content  {
     text-align: left;
-    font-size: 1.5vw;// ays na
-
+    font-size: 1.25vw;
     font-weight: 400;
-top: 20;
-
-    overflow: hidden; /* Hide overflow in table cells */
+    top: 20;
+    overflow: hidden;
     text-overflow: ellipsis;
-    color: black;
+    color: #55665e;
   }
-
-
-
 
     .topnav .search-container {
       float: right;
       display: flex;
       align-items: center;
       width: 50%;
-
       margin: 0 0 0 0;
     }
 
@@ -325,15 +344,12 @@ top: 20;
 
     }
 
-    /* Align the button to the right */
     .topnav button {
       float: right;
       padding: 1%;
       border: none;
       background-color: transparent;
     }
-
-
 
     button:hover {
       cursor: pointer;
@@ -395,7 +411,7 @@ top: 20;
     font-size: 1.5vw;
     color: black;
     background-color: transparent;
-    margin: 0 5%;
+    margin:  0 -0.5%;
   }
 
   .reset:hover  {
@@ -405,15 +421,6 @@ top: 20;
 
 
 
-
-
-
-
-
-
-
-
-    /* For Chrome, Safari, and Opera */
   .medicine-list-container::-webkit-scrollbar {
     width: 0.25rem;
   }
@@ -426,7 +433,6 @@ top: 20;
     background-color: #888;
   }
 
-  /* For Firefox */
   .medicine-list-container {
     scrollbar-width: thin;
     scrollbar-color: #888 #f1f1f1;
@@ -471,4 +477,21 @@ top: 20;
     background-color: #888;
   }
 
+  .table-container::-webkit-scrollbar {
+    width: 0.25rem;
+  }
 
+  .table-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+
+  .table-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+  }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}

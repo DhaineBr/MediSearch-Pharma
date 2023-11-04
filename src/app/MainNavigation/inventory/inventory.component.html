@@ -10,52 +10,53 @@
           <div class="left-content">
             <button class="medicine-button" (click)="selectMedicine(inventory)">{{ inventory.productName }}</button>
 
-
-
-
-
           </div>
         </ng-container>
       </div>
 
       <div class="right">
+      <div class="top">
+        <button class="reset" (click)="clearSelectedMedicines()"><i class="fa-solid fa-arrows-rotate"></i></button>
         <input type="text" id="barcode-scanner" (input)="handleBarcodeScan($event)" placeholder="Scan Barcode" autofocus>
+      </div>
       <form>
+        <div class="table-container">
         <table class="transaction-window">
           <tr class="table-header">
             <th style="width: 40%">Product</th>
             <th style="width: 20%">Price</th>
             <th style="width: 15%">Quantity</th>
-            <th style="width: 25%">Action</th>
+            <th style="width: 25%; text-align: center;">Action</th>
           </tr>
 
 
-      <tr class="table-content" *ngFor="let selectedMedicine of selectedMedicines; let i = index">
-  <td>{{ selectedMedicine.productName }}</td>
-  <td>{{ selectedMedicine.price }}</td>
-  <td >
-    {{ inputQuantities[i] }}
-  </td>
-  <td >
-    <button (click)="decrementQuantity(i)" class="minus"><i class="fa-solid fa-minus"></i></button>
-    <button (click)="incrementQuantity(i)" class="plus"><i class="fa-solid fa-plus"></i></button>
-    <button class="clear" (click)="removeMedicine(i)"><i class="fa fa-close"></i></button>
-  </td>
-</tr>
-
-
-
-
+        <tr class="table-content" *ngFor="let selectedMedicine of selectedMedicines; let i = index">
+          <td>{{ selectedMedicine.productName }}</td>
+          <td>Php {{ selectedMedicine.price }}</td>
+          <td style="text-align: center;">
+            {{ inputQuantities[i] }}
+          </td>
+          <td style="text-align: center;">
+            <button (click)="decrementQuantity(i)" class="minus"><i class="fa-solid fa-minus"></i></button>
+            <button (click)="incrementQuantity(i)" class="plus"><i class="fa-solid fa-plus"></i></button>
+            <button class="clear" (click)="removeMedicine(i)"><i class="fa fa-close"></i></button>
+          </td>
+        </tr>
         </table>
+        </div>
 
         <div class="bottom-panel">
-          <div class="total"><span style="font-weight: 600; color: #55665e">Total:
-            {{ calculateTotalPrice() | currency: 'PHP' }}
-          </span> </div>
-
-          <div class="confirm">
-            <button class="reset" (click)="clearSelectedMedicines()">Reset</button>
-            <button class="confirm-payment">Pay</button></div>
+          <div class="total"><span style="font-weight: 600; color: #55665e">Total:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Php
+            {{ calculateTotalPrice() }}
+          </span>
+          </div>
+          <div class="payment">
+            <input type="number" class="payment-input">
+            <button class="confirm-payment">Pay</button>
+          </div>
+          <div class="change">
+            <span style="font-weight: 600; color: #55665e; text-align: left;">Change:&nbsp;Php </span>
+          </div>
         </div>
       </form>
       </div>
