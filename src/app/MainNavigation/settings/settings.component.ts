@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { StoreDetailsComponent } from './store-details/store-details.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
@@ -8,13 +8,18 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit{
   constructor(public dialog: MatDialog) {}
+
+
+  ngOnInit(): void {
+  }
+
 
   editStore() {
     this.dialog.open(StoreDetailsComponent, {
       width: '120vh',
-      height: '77.5vh',
+      height: '67vh',
     });
   };
 
@@ -24,5 +29,6 @@ export class SettingsComponent {
       height: '65vh',
     });
   }
+
 
 }

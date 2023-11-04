@@ -26,11 +26,11 @@
   }
 
   * {
-    border: none;
+    border: hidden;
   }
 
   .store-details-container, .account-details-container   {
-    width: 70%;
+    width: 85%;
     margin: auto;
     margin-top: 5%;
     padding: 1% 3% 2% 3%;
@@ -41,8 +41,8 @@
 
   .account-details-container {
     margin-bottom: 5%;
+    height: 25vh;
   }
-
 
   .container-header {
     width: 100%;
@@ -53,13 +53,13 @@
     padding: 0 0 2% 0;
     color: #55665e;
     font-weight: 500;
-    width: 70%;
+    width: 90%;
     margin: 0;
     float: left;
   }
 
   .button-container {
-    width: 10%;
+    width: 7.5%;
     float: right;
     padding: 0.5% 0 0;
     color: #55665e;
@@ -69,12 +69,12 @@
   }
 
   .button-container button  {
-    padding: 5% 10% 5% 10%;
+    padding: 2.5% 5% 2.5% 5%;
     background-color: #0441AA;
     font-weight: 500;
-    font-size: 2.5vw;
+    font-size: 1.5vw;
     color: white;
-    border-radius: 1.5rem;
+    border-radius: 2.5rem;
     transition: all 0.5s ease;
     transform: scale(1);
   }
@@ -85,23 +85,36 @@
     border-color: #0441AA;
     background-color: white;
     color: #0441AA;
-    border-radius: 1.6rem;
   }
 
-
-
   .left {
-    width: 45%;
+    width: 25%;
     float: left;
     margin: auto;
-    height: auto;
+    height: 30vh;
+  }
+
+  .profile-container  {
+    height: 30vh;
+    border-radius: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.1) 0rem 0rem 0.3125rem 0rem, rgba(0, 0, 0, 0.1) 0rem 0rem 0.0625rem 0rem;
+  }
+
+  #profile {
+    height: 27.5vh;
+    width: 95%;
+    border-radius: 0.5rem;
   }
 
   .right {
-    width: 50%;
+    width: 70%;
     float: right;
     margin: auto;
-    height: auto
+    height: auto;
+    height: 30vh;
   }
 
   label {

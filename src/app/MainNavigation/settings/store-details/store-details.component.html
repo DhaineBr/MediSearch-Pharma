@@ -5,34 +5,27 @@
 <mat-dialog-content>
   <form>
     <div class="inputs">
-      <div class="top">
-      <div class="img-container" (click)="fileInput.click()">
-        <i class="fa-solid fa-plus" *ngIf="!image"></i>
-        <img [src]="image" class="img-input" alt="Selected Image" *ngIf="image" />
-      </div>
-      <div class="input-container" >
-        <input
-          type="file"
-          name="post-img-input"
-          id="post-img-input"
-          accept=".png, .jpeg, .jpg"
-          (change)="onFileSelected($event)"
-          #fileInput
-          style="display: none;"
-        />
-      </div>
-
-      </div>
       <div class="sub-left">
-        <label for="firstName">First Name</label><br>
-        <input type="text" name="firstName" id="firstName"><br>
-        <label for="lastName">Last Name</label><br>
-        <input type="text" name="lastName" id="lastName"><br>
-        <label for="companyName">Company Name</label><br>
-        <input type="text" name="companyName" id="companyName"><br>
+        <div class="img-container" (click)="fileInput.click()">
+          <i class="fa-solid fa-plus" *ngIf="!image"></i>
+          <img [src]="image" class="img-input" alt="Selected Image" *ngIf="image" />
+        </div>
+        <div class="input-container" >
+          <input
+            type="file"
+            name="post-img-input"
+            id="post-img-input"
+            accept=".png, .jpeg, .jpg"
+            (change)="onFileSelected($event)"
+            #fileInput
+            style="display: none;"
+          />
+        </div>
       </div>
 
       <div class="sub-right">
+        <label for="branchName">Branch Name</label><br>
+        <input type="text" name="branchName" id="branchName"><br>
         <label for="address">Address</label><br>
         <input type="text" name="address" id="address"><br>
         <label for="contactNumber">Contact No.</label><br>
@@ -49,7 +42,7 @@
     </div>
 
     <div class="footer">
-      <button type="submit" (click)="saveChanges()">Confirm</button>
+      <button type="submit" (click)="saveChanges()">Save</button>
     </div>
   </form>
 
