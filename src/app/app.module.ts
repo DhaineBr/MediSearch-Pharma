@@ -36,3 +36,4 @@ import { HttpBaseInterceptor } from './shared/interceptors/http-base.interceptor
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

@@ -46,7 +46,7 @@ export class SignUpComponent implements OnInit {
 
       this.customIcon = L.icon({
         iconUrl: './../../../assets/10 open store.png',
-        iconSize: [32, 32],
+        iconSize: [50, 50],
         iconAnchor: [16, 32]
       });
 

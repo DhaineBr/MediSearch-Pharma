@@ -19,7 +19,7 @@
         <button class="reset" (click)="clearSelectedMedicines()"><i class="fa-solid fa-arrows-rotate"></i></button>
         <input type="text" id="barcode-scanner" (input)="handleBarcodeScan($event)" placeholder="Scan Barcode" autofocus>
       </div>
-      <form>
+      <form [formGroup]="summaryForm">
         <div class="table-container">
         <table class="transaction-window">
           <tr class="table-header">
@@ -46,18 +46,20 @@
         </div>
 
         <div class="bottom-panel">
-          <div class="total"><span style="font-weight: 600; color: #55665e">Total:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Php
-            {{ calculateTotalPrice() }}
-          </span>
+          <div class="total">
+            <span style="font-weight: 600; color: #55665e">Total:     Php <span formControlName="totalPrice">{{ calculateTotalPrice() }}</span></span>
           </div>
           <div class="payment">
-            <input type="number" class="payment-input">
-            <button class="confirm-payment">Pay</button>
+            <input type="text" class="payment-input" formControlName="paymentAmount">
+            <button class="confirm-payment" (click)="calculateChange()">Pay</button>
           </div>
           <div class="change">
-            <span style="font-weight: 600; color: #55665e; text-align: left;">Change:&nbsp;Php </span>
+            <span style="font-weight: 600; color: #55665e; text-align: left;">Change: Php {{changeAmount}}</span>
+            <span id="change"></span>
           </div>
         </div>
+
+
       </form>
       </div>
     </div>

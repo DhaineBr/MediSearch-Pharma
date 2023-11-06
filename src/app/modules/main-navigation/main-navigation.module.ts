@@ -9,7 +9,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 import { MainNavigationRoutingModule } from './main-navigation-routing.module';
 import { MainNavigationComponent } from './main-navigation.component';
 import { InventoryComponent } from './inventory/inventory.component';

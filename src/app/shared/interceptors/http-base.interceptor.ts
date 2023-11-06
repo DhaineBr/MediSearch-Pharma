@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class HttpBaseInterceptor implements HttpInterceptor {
-  withHeaders = ['/me', '/customer/register', '/logout', '/my-profile', '/my-profile/update']
+  withHeaders = ['/me', '/customer/register', '/logout', '/my-profile', '/my-profile/update', '/medicines']
   constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
