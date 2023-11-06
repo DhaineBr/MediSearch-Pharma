@@ -39,7 +39,7 @@
               <td>{{ reservation.dateTime }}</td>
               <td>P {{ reservation.totalPrice }}</td>
               <td>
-                <button id="confirm"><i class="fa-regular fa-eye"></i></button>
+                <button id="confirm" (click)="reservationDetails()"><i class="fa-regular fa-eye"></i></button>
               </td>
             </tr>
           </ng-container>

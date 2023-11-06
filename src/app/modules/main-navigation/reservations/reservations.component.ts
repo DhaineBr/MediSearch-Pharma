@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
 
 interface Reservation {
   orderId: number;
@@ -24,12 +26,8 @@ export class ReservationsComponent implements OnInit {
 
   searchQuery: string = '';
 
-  constructor() { }
 
   ngOnInit(): void {
-    // You can update these counts based on your data or API calls.
-    // For now, we have set them to static values for demonstration purposes.
-    this.fetchTransactionCounts();
 
     // Generate dummy data for reservations
     this.reservations = this.generateDummyData(10);
@@ -44,10 +42,9 @@ export class ReservationsComponent implements OnInit {
       this.upcomingTransactionsCount = 20;
       this.fulfilledTransactionsCount = 8;
       this.cancelledTransactionsCount = 3;
-    }, 2000); // Simulate a 2-second delay before updating the counts.
+    }, 2000);
   }
 
-  // Generate dummy data for reservations
   generateDummyData(count: number): Reservation[] {
     const dummyReservations: Reservation[] = [];
 
@@ -67,10 +64,20 @@ export class ReservationsComponent implements OnInit {
     return dummyReservations;
   }
 
-  // Filter reservations based on the search query
   filterReservations() {
     this.filteredReservations = this.reservations.filter((reservation) =>
       reservation.name.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
-}
+
+  constructor(public dialog: MatDialog) {}
+  reservationDetails() {
+    const dialogRef = this.dialog.open(ReservationDetailsComponent, {
+      width: '30%',
+      height: 'auto',
+    });
+
+  }
+
+  }
+
