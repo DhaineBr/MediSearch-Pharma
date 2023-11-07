@@ -1,16 +1,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 <body>
-  <a routerLink="/"
-    ><button onclick="back()" id="backButton">
-      <i class="fa fa-arrow-circle-o-left"></i></button
-  ></a>
+  <a routerLink="/"><button onclick="back()" id="backButton">
+      <i class="fa fa-arrow-circle-o-left"></i></button></a>
   <div class="container">
-    <form (ngSubmit)="onSubmit()">
+    <form [formGroup]="userDataForm" (ngSubmit)="onSubmit()">
       <fieldset>
         <div class="left">
           <div class="map-container">
@@ -19,49 +14,29 @@
         </div>
         <div class="left">
           <label for="coords">Coordinates</label><br />
-          <input
-            type="text"
-            formControlName="coordinates"
-          /><br />
+          <input type="text" formControlName="coords" /><br />
 
           <label for="name">Branch Name</label><br />
-          <input
-            type="text"
-            formControlName="name"
-            placeholder="Ex.: ABC Pharmacy"
-          /><br />
+          <input type="text" formControlName="name" placeholder="Ex.: ABC Pharmacy" /><br />
+
+          <label for="name">Address</label><br />
+          <input type="text" formControlName="address" placeholder="Ex.: Pasig City" /><br />
 
           <label for="contactNo">Contact No</label><br />
-          <input
-            type="text"
-            formControlName="contactNo"
-            placeholder="Ex.: Dela Cruz"
-          /><br />
+          <input type="text" formControlName="contactNumber" placeholder="Ex.: Dela Cruz" /><br />
           <div class="store-hours">
             <div class="sub-left">
               <label for="openingTime" class="labels">Opening Time</label><br>
-              <input
-              type="time"
-              formControlName="openingTime"
-            />
+              <input type="time" formControlName="openingTime" />
             </div>
             <div class="sub-right">
               <label for="closingTime" class="labels">Closing Time</label>
-              <input
-              type="time"
-              formControlName="closingTime"
-            /><br />
+              <input type="time" formControlName="closingTime" /><br />
             </div>
           </div>
 
           <label for="storeHours">Email</label><br />
-          <input
-
-            type="email"
-
-            formControlName="email"
-            placeholder="Ex.: Juan"
-          /><br />
+          <input type="email" formControlName="email" placeholder="Ex.: Juan" /><br />
 
           <!-- <label for="closingTime">Closing Time</label><br />
           <input
@@ -70,11 +45,7 @@
             placeholder="Ex.: Dela Cruz"
           /><br /> -->
           <label for="password">Password</label><br />
-          <input
-            type="password"
-            formControlName="password"
-            placeholder="should be at least 9 characters."
-          /><br />
+          <input type="password" formControlName="password" placeholder="should be at least 9 characters." /><br />
         </div>
       </fieldset>
 
