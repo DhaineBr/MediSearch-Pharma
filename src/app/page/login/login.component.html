@@ -3,7 +3,7 @@
 <div class="container">
   <fieldset>
     <legend><img src="./../../assets/MediSearch logo.png" id="logo" /></legend>
-    <form (ngSubmit)="requestLogin()">
+    <form [formGroup]="loginForm" (ngSubmit)="requestLogin()">
       <input type="email" formControlName="email" name="email_ad" placeholder="Email" />
       <br />
       <input type="password" formControlName="password" name="password" placeholder="Password" />

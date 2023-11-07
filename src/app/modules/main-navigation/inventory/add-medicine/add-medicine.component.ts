@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Medicine } from 'src/app/shared/models/medicine';
+import { MedicineService } from 'src/app/shared/services/medicine.service';
 
 
 
@@ -18,7 +20,7 @@ export class AddMedicineComponent implements OnInit {
   expirationDateErrorMessage: string = '';
 
 
-  constructor(private dialogRef: MatDialogRef<AddMedicineComponent>, private fb: FormBuilder) {
+  constructor(private dialogRef: MatDialogRef<AddMedicineComponent>, private fb: FormBuilder, private medicineService: MedicineService) {
     this.initializeForm();
   }
 
@@ -26,31 +28,29 @@ export class AddMedicineComponent implements OnInit {
     this.initializeForm();
   }
 
-
-
   initializeForm(): void {
     this.medicineForm = this.fb.group({
       itemNumber: ['', Validators.required],
-      productName: ['', Validators.required],
+      name: ['', Validators.required],
       quantity: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0.01)]],
-      expirationDate: ['', Validators.required]
+      expirationDate: ['', Validators.required],
+      reservationDate: [''],
+      category: ['sample category'],
+      pharmacyId: ['1'],
     });
   }
 
-
-
-
   onSubmit(): void {
     if (this.medicineForm.valid) {
-      const newMedicine = {
-        itemNo: this.medicineForm.value.itemNumber,
-        productName: this.medicineForm.value.productName,
-        quantity: this.medicineForm.value.quantity,
-        price: this.medicineForm.value.price,
-        expirationDate: this.medicineForm.value.expirationDate,
-      };
-
+      const newMedicine: Medicine = this.medicineForm.getRawValue();
+      newMedicine.itemNumber = newMedicine.itemNumber.toString();
+      newMedicine.expirationDate = new Date(newMedicine.expirationDate).toLocaleString();
+      newMedicine.reservationDate = new Date(newMedicine.expirationDate).toLocaleString();
+      newMedicine.pharmacyId = parseInt(newMedicine.pharmacyId.toString());
+      this.medicineService.createMedicine(newMedicine).subscribe((response) => {
+        console.log(response);
+      });
       this.dialogRef.close(newMedicine);
     } else {
       // Handle invalid form data here if needed.
