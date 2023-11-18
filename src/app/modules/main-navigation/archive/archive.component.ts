@@ -1,5 +1,4 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { PermanentlyDeleteComponent } from './permanently-delete/permanently-delete.component';
 import { RestoreItemsComponent } from './restore-items/restore-items.component';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 
@@ -82,11 +81,14 @@ export class ArchiveComponent implements OnInit{
     this.filteredArchive = this.filteredArchive.filter((archive) => archive.itemNo !== itemId);
   }
 
+  permanentlyDelete() {
+    const selectedArchives = this.filteredArchive.filter((archive) => archive.selected);
 
-  deletePopup() {
-    const dialogRef = this.dialog.open(PermanentlyDeleteComponent, {
-      width: '70vh',
-      height: '37.5vh',
-    });
+    for (const archive of selectedArchives) {
+      const index = this.filteredArchive.indexOf(archive);
+      if (index !== -1) {
+        this.filteredArchive.splice(index, 1);
+      }
+    }
   }
 }

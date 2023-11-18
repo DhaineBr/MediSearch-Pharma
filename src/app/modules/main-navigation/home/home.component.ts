@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 interface Pharmacy  {
   rank: number;
   pharmacyName: string;
-  pharmacyAddress: string;
-  rating: number
+  pharmacyAddress: number;
+  rating: string
 }
 
 @Component({
@@ -25,10 +25,10 @@ export class HomeComponent {
 
     for (let i = 1; i <= count; i++) {
       const pharmacy: Pharmacy = {
-        rank: i,
-        pharmacyName: `Pharmacy Name ` + i,
-        pharmacyAddress: `Brgy ` + i + ` Poblacion, Batangas City`,
-        rating: 5 - (i/100)
+        rank: 891341 + i,
+        pharmacyName: `Seretide 250 Diskus`,
+        pharmacyAddress: 12 + i ,
+        rating: `12/07/2023`
       };
 
       dummyPharmacy.push(pharmacy);

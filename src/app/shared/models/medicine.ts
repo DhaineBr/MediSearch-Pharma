@@ -1,4 +1,5 @@
-export interface medecinesDetails {
+export interface Medicine {
+  id: string,
   itemNumber: string,
   name: string,
   category: string,
@@ -6,4 +7,5 @@ export interface medecinesDetails {
   quantity: number,
   expirationDate: string,
   reservationDate: string,
+  pharmacyId: number
 }

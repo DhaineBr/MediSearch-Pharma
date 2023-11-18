@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import * as L from 'leaflet';
+import { Pharmacy } from 'src/app/shared/models/pharmacy';
+import { PharmacyService } from 'src/app/shared/services/pharmacy.service';
 
 
 @Component({
@@ -13,19 +15,18 @@ export class SignUpComponent implements OnInit {
   private map: L.Map | undefined;
   private customIcon: L.Icon | undefined;
   private customMarker: L.Marker<any> | undefined;
-  public coordinatesControl: FormControl;
   public userDataForm: FormGroup;
 
-  constructor() {
-    this.coordinatesControl = new FormControl('');
-    this.userDataForm = new FormGroup({
-      name: new FormControl(''),
-      email: new FormControl(''),
-      address: new FormControl(''),
-      coordinates: this.coordinatesControl,
-      storeHours: new FormControl(''),
-      contactNumber: new FormControl(''),
-      password: new FormControl(''),
+  constructor(private fb: FormBuilder, private pharmacyService: PharmacyService) {
+    this.userDataForm = this.fb.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.email, Validators.required]],
+      address: [''],
+      coords: [''],
+      openingTime: [''],
+      closingTime: [''],
+      contactNumber: [''],
+      password: ['', [Validators.required]],
     });
 
   }
@@ -66,7 +67,7 @@ export class SignUpComponent implements OnInit {
     this.map.on('click', (e: L.LeafletMouseEvent) => {
       if (this.customMarker) {
         this.customMarker.setLatLng(e.latlng);
-        this.coordinatesControl.setValue(`${e.latlng.lat}, ${e.latlng.lng}`);
+        (this.userDataForm.get('coords') as FormControl).setValue(`${e.latlng.lat}, ${e.latlng.lng}`);
       }
     });
 
@@ -86,25 +87,16 @@ export class SignUpComponent implements OnInit {
 
 
   onSubmit() {
-    //   const formData = this.userDataForm.value;
+    const pharmacyForm = this.userDataForm.getRawValue();
+    const newPharmacy = {
+      ...pharmacyForm,
+      storeHours: pharmacyForm.openingTime + ' - ' + pharmacyForm.closingTime,
+    };
+    delete newPharmacy.openingTime;
+    delete newPharmacy.closingTime;
+    this.pharmacyService.createPharmacy(newPharmacy).subscribe((response) => {
+      console.log(response);
+    });
 
-    //   this.HttpClientService.registerData(formData).then(response => {
-    //     console.log('User registered successfully');
-
-    //     console.log(this.userDataForm.value)
-    //   }).catch(error => {
-    //     console.error('Error during user registration:', error);
-    //       console.log(this.userDataForm.value)
-    //   });
-    //     console.log(this.userDataForm.value)
-    // }
   }
 }
-
-
-
-
-
-
-
-
