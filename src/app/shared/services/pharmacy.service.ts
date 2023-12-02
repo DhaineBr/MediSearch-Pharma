@@ -11,13 +11,13 @@ export class PharmacyService {
   constructor(private http: HttpClient) { }
 
   public getAllPharmacies() {
-    return this.http.get(`${environment.apiProdURL}/pharmacy`);
+    return this.http.get(`${environment.apiProdURL}/pharmacies`);
   }
 
 
 
   public createPharmacy(data: any) {
-    return this.http.post(`${environment.apiProdURL}`, data);
+    return this.http.post(`${environment.apiProdURL}/pharmacies/branch/register`, data);
   }
 
   public getallorders(data: any ){

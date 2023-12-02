@@ -20,13 +20,13 @@ export class SignUpComponent implements OnInit {
   constructor(private fb: FormBuilder, private pharmacyService: PharmacyService) {
     this.userDataForm = this.fb.group({
       name: ['', [Validators.required]],
-      email: ['', [Validators.email, Validators.required]],
+      email: [''],
       address: [''],
       coords: [''],
       openingTime: [''],
       closingTime: [''],
       contactNumber: [''],
-      password: ['', [Validators.required]],
+      password: [''],
     });
 
   }
@@ -83,10 +83,16 @@ export class SignUpComponent implements OnInit {
   }
 
 
-
+  slugify(input: string): string {
+    return input
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '');
+  }
 
 
   onSubmit() {
+
     const pharmacyForm = this.userDataForm.getRawValue();
     const newPharmacy = {
       ...pharmacyForm,

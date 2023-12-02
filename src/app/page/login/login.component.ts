@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   // Initialize the login form using FormBuilder
   loginForm: FormGroup;
   showInputField: boolean = false;
+  // public loginForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
