@@ -29,8 +29,6 @@ export class ReservationsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // Generate dummy data for reservations
-    this.reservations = this.generateDummyData(10);
     this.filteredReservations = this.reservations;
   }
 
@@ -45,24 +43,6 @@ export class ReservationsComponent implements OnInit {
     }, 2000);
   }
 
-  generateDummyData(count: number): Reservation[] {
-    const dummyReservations: Reservation[] = [];
-
-    for (let i = 1; i <= count; i++) {
-      const reservation: Reservation = {
-        orderId: 1000 + i,
-        name: `Customer ${i}`,
-        order: `Order ${i}`,
-        contactNo: `09123456789${i}`,
-        dateTime: `01/01/2024 | 0${i}:00`,
-        totalPrice: i * 100
-      };
-
-      dummyReservations.push(reservation);
-    }
-
-    return dummyReservations;
-  }
 
   filterReservations() {
     this.filteredReservations = this.reservations.filter((reservation) =>

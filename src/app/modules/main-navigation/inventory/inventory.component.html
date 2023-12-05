@@ -8,8 +8,7 @@
         </div>
         <ng-container *ngFor="let inventory of inventories">
           <div class="left-content">
-            <button class="medicine-button" (click)="selectMedicine(inventory)">{{ inventory.productName }}</button>
-
+            <button class="medicine-button" (click)="selectMedicine(inventory)">{{ inventory.name }}</button>
           </div>
         </ng-container>
       </div>
@@ -31,7 +30,7 @@
 
 
         <tr class="table-content" *ngFor="let selectedMedicine of selectedMedicines; let i = index">
-          <td>{{ selectedMedicine.productName }}</td>
+          <td>{{ selectedMedicine.name }}</td>
           <td>Php {{ selectedMedicine.price }}</td>
           <td style="text-align: center;">
             {{ inputQuantities[i] }}
@@ -72,7 +71,7 @@
           </button>
         </div>
         <div class="search-container">
-          <input type="text" placeholder="Search.." [(ngModel)]="searchQuery" (input)="filterInventory()"/>
+          <input type="text" placeholder="Search.." [(ngModel)]="searchQuery" (input)="onSearchQueryChange()"/>
           <button id="searchButton">
             <i class="fa-solid fa-magnifying-glass" style="color: white; font-size: 1.25vw"></i>
           </button>
@@ -93,8 +92,8 @@
 
             <ng-container *ngFor="let inventory of filteredInventory">
               <tr class="table-content">
-                <td>{{inventory.itemNo}}</td>
-                <td>{{inventory.productName}}</td>
+                <td>{{inventory.itemNumber}}</td>
+                <td>{{inventory.name}}</td>
                 <td>{{inventory.quantity}}</td>
                 <td>{{inventory.price}}</td>
                 <td>{{inventory.expirationDate | date}}</td>

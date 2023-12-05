@@ -3,14 +3,9 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angu
 import { AddMedicineComponent } from './add-medicine/add-medicine.component';
 import { EditMedicineComponent } from './edit-medicine/edit-medicine.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MedicineService } from 'src/app/shared/services/medicine.service';
+import { Medicine } from 'src/app/shared/models/medicine';
 
-interface Inventory {
-  itemNo: number;
-  productName: string;
-  quantity: number;
-  price: number;
-  expirationDate: Date;
-}
 
 @Component({
   selector: 'app-inventory',
@@ -20,12 +15,12 @@ interface Inventory {
 export class InventoryComponent implements OnInit{
   inputQuantity: number = 1;
   inputQuantities: number[] = [];
-  inventories: Inventory[] = [];
-  filteredInventory: Inventory[] = [];
+  inventories: Medicine[] = [];
+  filteredInventory: Medicine[] = [];
 
   summaryForm: FormGroup;
 
-  constructor(public dialog: MatDialog, private formBuilder: FormBuilder) {
+  constructor(public dialog: MatDialog, private formBuilder: FormBuilder, private _medicines : MedicineService) {
     this.summaryForm = this.formBuilder.group({
       paymentAmount: ['']
     });
@@ -37,32 +32,45 @@ export class InventoryComponent implements OnInit{
   searchQuery: string = '';
 
   ngOnInit(): void {
+    this.getAllMedicines();
     this.filteredInventory = this.inventories;
     this.inputQuantities = Array(this.inventories.length).fill(1);
     console.log('Initialized inputQuantities:', this.inputQuantities);
   }
 
-  generateDummyData(count: number): Inventory[] {
-    const dummyInventory: Inventory[] = [];
-    for (let i = 1; i <= count; i++) {
-      const expirationDate = new Date('2023-10-24');
-      expirationDate.setDate(expirationDate.getDate() + i);
-      const inventory: Inventory = {
-        itemNo: 7121099996 + i,
-        productName: `Medicine ` + (7121099997 + i),
-        quantity: 10 + i,
-        price: 10 + i,
-        expirationDate: expirationDate
-      };
-      dummyInventory.push(inventory);
-    }
-    return dummyInventory;
+  getAllMedicines() {
+    this._medicines.getAllMedicines().subscribe((response) => {
+      this.inventories = Array.isArray(response) ? response : [response];
+      console.log(this.inventories);
+    });
   }
+
+
+  // generateDummyData(count: number): Inventory[] {
+  //   const dummyInventory: Inventory[] = [];
+  //   for (let i = 1; i <= count; i++) {
+  //     const expirationDate = new Date('2023-10-24');
+  //     expirationDate.setDate(expirationDate.getDate() + i);
+  //     const inventory: Inventory = {
+  //       itemNo: 7121099996 + i,
+  //       productName: `Medicine ` + (7121099997 + i),
+  //       quantity: 10 + i,
+  //       price: 10 + i,
+  //       expirationDate: expirationDate
+  //     };
+  //     dummyInventory.push(inventory);
+  //   }
+  //   return dummyInventory;
+  // }
 
   filterInventory() {
     this.filteredInventory = this.inventories.filter((inventory) =>
-      inventory.productName.toLowerCase().includes(this.searchQuery.toLowerCase())
-    )
+      inventory.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+  }
+
+  onSearchQueryChange() {
+    this.filterInventory();
   }
 
   openAdd() {
@@ -79,45 +87,45 @@ export class InventoryComponent implements OnInit{
     });
   }
 
-  openEdit(inventory: Inventory) {
+  openEdit(inventories: Medicine) {
     const dialogRef = this.dialog.open(EditMedicineComponent, {
       width: '30%',
       height: 'auto',
-      data: { inventoryData: inventory }
+      data: { inventoryData: inventories }
     });
 
     dialogRef.afterClosed().subscribe((updatedData) => {
       if (updatedData) {
-        const index = this.inventories.findIndex(item => item.itemNo === updatedData.itemNumber);
+        const index = this.inventories.findIndex(item => item.itemNumber === updatedData.itemNumber);
         if (index !== -1) {
-          this.inventories[index] = { ...updatedData, itemNo: updatedData.itemNumber };
+          this.inventories[index] = { ...updatedData, itemNumber: updatedData.itemNumber };
         }
       }
     });
   }
 
   handleBarcodeScan(event: any) {
-    const target = event.target as HTMLInputElement;
-    if (target && target.value) {
-      const scannedBarcode = parseInt(target.value, 10);
-      if (!isNaN(scannedBarcode)) {
-        const foundItem = this.inventories.find(inventory => inventory.itemNo === scannedBarcode);
-        if (foundItem) {
-          this.selectMedicine(foundItem);
-          target.value = '';
-        }
-      }
-    }
+    // const target = event.target as HTMLInputElement;
+    // if (target && target.value) {
+    //   const scannedBarcode = parseInt(target.value, 10);
+    //   if (!isNaN(scannedBarcode)) {
+    //     const foundItem = this.inventories.find(inventories => this.inventories.itemNumber === scannedBarcode);
+    //     if (foundItem) {
+    //       this.selectMedicine(foundItem);
+    //       target.value = '';
+    //     }
+    //   }
+    // }
     }
 
-    selectMedicine(inventory: Inventory) {
+    selectMedicine(inventory: Medicine) {
       const alreadySelected = this.selectedMedicines.some(
-        (selectedMedicine) => selectedMedicine.itemNo === inventory.itemNo
+        (selectedMedicine) => selectedMedicine.itemNumber === inventory.itemNumber
       );
 
       if (!alreadySelected) {
         this.selectedMedicines.push(inventory);
-        console.log(`Added Medicine: ${inventory.productName}`);
+        console.log(`Added Medicine: ${inventory.name}`);
       }
     }
 
@@ -191,10 +199,4 @@ calculateChange() {
 
 
 }
-
-
-
-
-
-
 
