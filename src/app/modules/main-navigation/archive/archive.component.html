@@ -23,14 +23,14 @@
             <th>Price</th>
             <th>Expiration Date</th>
           </tr>
-        <ng-container *ngFor="let archive of filteredArchive">
+        <ng-container *ngFor="let archive of archives; let i=index">
           <tr class="table-content">
             <td><input type="checkbox" [checked]="archive.selected" (click)="toggleItemSelection(archive)"></td>
-            <td>{{archive.itemNo}}</td>
-            <td>{{archive.productName}}</td>
+            <td>{{archive.itemNumber}}</td>
+            <td>{{archive.name}}</td>
             <td>{{archive.quantity}}</td>
             <td>{{archive.price}}</td>
-            <td>{{archive.expirationDate}}</td>
+            <td>{{archive.expirationDate | date}}</td>
           </tr>
 
         </ng-container>
@@ -39,8 +39,8 @@
       </div>
     </div>
     <div class="bottom">
-      <button class="restore" matTooltip="Restore"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
-      <button class="delete" matTooltip="Delete" (click)="permanentlyDelete()"><i class="fa-solid fa-trash-can"></i></button>
+      <button class="restore" matTooltip="Restore" (click)="restoreSelectedMedicines()"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
+      <button class="delete" matTooltip="Delete" (click)="hardDeleteSelectedMedicines()"><i class="fa-solid fa-trash-can"></i></button>
     </div>
   </div>
 </div>

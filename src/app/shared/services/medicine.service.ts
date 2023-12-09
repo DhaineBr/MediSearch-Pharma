@@ -15,6 +15,10 @@ export class MedicineService {
     return this.http.get<Medicine>(`${environment.apiProdURL}${this.medUrl}`);
   }
 
+  public getAllArchived(): Observable<Medicine> {
+    return this.http.get<Medicine>(`${environment.apiProdURL}${this.medUrl}/archived`);
+  }
+
   public createMedicine(data: Medicine) {
     return this.http.post(`${environment.apiProdURL}${this.medUrl}`, data);
   }
@@ -29,5 +33,9 @@ export class MedicineService {
 
   public hardDeleteMedicine(data: Medicine) {
     return this.http.delete(`${environment.apiProdURL}${this.medUrl}/force-delete/${data.id}`);
+  }
+
+  public restoreDeletedMedicine(data: Medicine) {
+    return this.http.post(`${environment.apiProdURL}${this.medUrl}/archived/${data.id}/restore`, data);
   }
 }

@@ -33,11 +33,13 @@ export class InventoryComponent implements OnInit{
 
   ngOnInit(): void {
     this.getAllMedicines();
-    this.filteredInventory = this.inventories;
+    this.clearSelectedMedicines();
     this.inputQuantities = Array(this.inventories.length).fill(1);
     console.log('Initialized inputQuantities:', this.inputQuantities);
   }
 
+
+  //Get Request
   getAllMedicines() {
     this._medicines.getAllMedicines().subscribe((response) => {
       this.inventories = Array.isArray(response) ? response : [response];
@@ -45,23 +47,16 @@ export class InventoryComponent implements OnInit{
     });
   }
 
-
-  // generateDummyData(count: number): Inventory[] {
-  //   const dummyInventory: Inventory[] = [];
-  //   for (let i = 1; i <= count; i++) {
-  //     const expirationDate = new Date('2023-10-24');
-  //     expirationDate.setDate(expirationDate.getDate() + i);
-  //     const inventory: Inventory = {
-  //       itemNo: 7121099996 + i,
-  //       productName: `Medicine ` + (7121099997 + i),
-  //       quantity: 10 + i,
-  //       price: 10 + i,
-  //       expirationDate: expirationDate
-  //     };
-  //     dummyInventory.push(inventory);
-  //   }
-  //   return dummyInventory;
-  // }
+  softDeleteMedicine(medicine: Medicine) {
+    this._medicines.softDeleteMedicine(medicine).subscribe(
+      () => {
+        console.log(`Medicine with ID ${medicine.id} soft deleted successfully`);
+      },
+      (error) => {
+        console.error('Error deleting medicine:', error);
+      }
+    );
+  }
 
   filterInventory() {
     this.filteredInventory = this.inventories.filter((inventory) =>
@@ -105,17 +100,17 @@ export class InventoryComponent implements OnInit{
   }
 
   handleBarcodeScan(event: any) {
-    // const target = event.target as HTMLInputElement;
-    // if (target && target.value) {
-    //   const scannedBarcode = parseInt(target.value, 10);
-    //   if (!isNaN(scannedBarcode)) {
-    //     const foundItem = this.inventories.find(inventories => this.inventories.itemNumber === scannedBarcode);
-    //     if (foundItem) {
-    //       this.selectMedicine(foundItem);
-    //       target.value = '';
-    //     }
-    //   }
-    // }
+    const target = event.target as HTMLInputElement;
+    if (target && target.value) {
+      const scannedBarcode = parseInt(target.value, 10);
+      if (!isNaN(scannedBarcode)) {
+        const foundItem = this.inventories.find(inventory => inventory.itemNumber === String(scannedBarcode));
+        if (foundItem) {
+          this.selectMedicine(foundItem);
+          target.value = '';
+        }
+      }
+    }
     }
 
     selectMedicine(inventory: Medicine) {
@@ -157,8 +152,6 @@ totalPrice: number = 0;
     this.totalPrice = this.calculateTotalPrice();
   }
 
-
-
   incrementQuantity(formIndex: number): void {
     if (formIndex >= 0 && formIndex < this.inputQuantities.length) {
       const maxQuantity = this.selectedMedicines[formIndex].quantity;
@@ -181,10 +174,10 @@ totalPrice: number = 0;
     console.log('Updated Quantity:', this.inputQuantities);
   }
 
-changeAmount!: number;
-paymentAmount!: number;
+  changeAmount!: number;
+  paymentAmount!: number;
 
-calculateChange() {
+  calculateChange() {
   const paymentAmount = this.summaryForm?.get('paymentAmount')?.value || 0;
   const totalPrice = this.calculateTotalPrice();
 
@@ -195,7 +188,7 @@ calculateChange() {
   this.changeAmount = paymentAmount - totalPrice;
   console.log(this.changeAmount);
   }
-}
+  }
 
 
 }

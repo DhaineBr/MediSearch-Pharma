@@ -1,15 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { RestoreItemsComponent } from './restore-items/restore-items.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MedicineService } from 'src/app/shared/services/medicine.service';
+import { Medicine } from 'src/app/shared/models/medicine';
 
-interface Archive {
-  itemNo: number;
-  productName: string;
-  quantity: number;
-  price: number;
-  expirationDate: string;
-  selected: boolean;
-}
 
 @Component({
   selector: 'app-archive',
@@ -18,32 +13,22 @@ interface Archive {
 })
 export class ArchiveComponent implements OnInit{
 
-  archives: Archive[] = [];
-  filteredArchive: Archive[] = [];
-  constructor(public dialog: MatDialog) {}
+  archives: Medicine[] = [];
+  selectedArchives: Medicine[] = [];
+  filteredArchive: Medicine[] = [];
+  constructor(public dialog: MatDialog, private formBuilder: FormBuilder, private _medicines : MedicineService) {}
 
   ngOnInit(): void {
-    this.archives = this.generateDummyData(10);
+    // this.archives = this.generateDummyData(10);
+    this.getAllArchived();
     this.filteredArchive = this.archives;
   }
 
-  generateDummyData(count: number): Archive[] {
-    const dummyInventory: Archive[] = [];
-
-    for (let i = 1; i <= count; i++) {
-      const archive: Archive = {
-        itemNo: 7121099996 + i,
-        productName: `Medicine ` + (7121099997 + i),
-        quantity: 10 + i,
-        price: 10 + i,
-        expirationDate: `01/01/2024`,
-        selected: false
-      };
-
-      dummyInventory.push(archive);
-    }
-
-    return dummyInventory;
+  getAllArchived() {
+    this._medicines.getAllArchived().subscribe((response) => {
+      this.archives = Array.isArray(response) ? response : [response];
+      console.log(this.archives);
+    });
   }
 
 
@@ -51,35 +36,82 @@ export class ArchiveComponent implements OnInit{
 
   filterArchive () {
     this.filteredArchive = this.archives.filter((archive) =>
-    archive.productName.toLowerCase().includes(this.searchQuery.toLowerCase()))
+    archive.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
   }
 
-  selectAll = false; // Initialize the header checkbox state
+  selectAll = false;
 
   toggleSelectAll(event: Event) {
     this.selectAll = (event.target as HTMLInputElement).checked;
 
-    // Loop through the archive items and update their checkbox state
-    for (const archive of this.filteredArchive) {
+    // Loop through all archive items and update their checkbox state
+    for (const archive of this.archives) {
       archive.selected = this.selectAll;
     }
   }
 
-  // Function to handle individual row checkbox click event
-  toggleItemSelection(archive: Archive) {
+
+toggleItemSelection(archive: Medicine) {
     archive.selected = !archive.selected;
-    this.updateSelectAllState();
+
+    if (archive.selected) {
+      this.selectedArchives.push(archive);
+    } else {
+      const index = this.selectedArchives.indexOf(archive);
+      if (index !== -1) {
+        this.selectedArchives.splice(index, 1);
+      }
+    }
   }
 
-  // Helper function to update the state of the "Select All" checkbox
+  restoreSelectedMedicines() {
+    this.selectedArchives.forEach((archive) => {
+      this.restoreDeletedMedicine(archive);
+    });
+
+    this.selectedArchives = [];
+  }
+
+  hardDeleteSelectedMedicines() {
+    this.selectedArchives.forEach((archive) => {
+      this.hardDeleteMedicine(archive);
+    });
+
+    this.selectedArchives = [];
+  }
+
+  restoreDeletedMedicine(archive: Medicine) {
+    this._medicines.restoreDeletedMedicine(archive).subscribe(
+      () => {
+        console.log(`Medicine with name ${archive.name} restored successfully`);
+      },
+      (error) => {
+        console.error('Error restoring medicine:', error);
+      }
+    );
+  }
+
+  hardDeleteMedicine(archive: Medicine) {
+    this._medicines.hardDeleteMedicine(archive).subscribe(
+      () => {
+        console.log(`Medicine with name ${archive.name} permanently deleted`);
+      },
+      (error) => {
+        console.error('Error deleting medicine:', error);
+      }
+    );
+  }
+
+
   updateSelectAllState() {
     this.selectAll = this.filteredArchive.every((archive) => archive.selected);
   }
 
   handleDeleteItem(itemId: number) {
-    // Find and remove the deleted item from filteredArchive
-    this.filteredArchive = this.filteredArchive.filter((archive) => archive.itemNo !== itemId);
+    this.filteredArchive = this.filteredArchive.filter((archive) => archive.itemNumber !== String(itemId));
   }
+
+
 
   permanentlyDelete() {
     const selectedArchives = this.filteredArchive.filter((archive) => archive.selected);

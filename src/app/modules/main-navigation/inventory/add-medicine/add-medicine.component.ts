@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-
-
+import { Medicine } from 'src/app/shared/models/medicine';
+import { MedicineService } from 'src/app/shared/services/medicine.service';
 
 @Component({
   selector: 'app-add-medicine',
@@ -18,7 +18,9 @@ export class AddMedicineComponent implements OnInit {
   expirationDateErrorMessage: string = '';
 
 
-  constructor(private dialogRef: MatDialogRef<AddMedicineComponent>, private fb: FormBuilder) {
+  constructor(private dialogRef: MatDialogRef<AddMedicineComponent>,
+    private fb: FormBuilder,
+    private medicineService: MedicineService) {
     this.initializeForm();
   }
 
@@ -31,7 +33,9 @@ export class AddMedicineComponent implements OnInit {
   initializeForm(): void {
     this.medicineForm = this.fb.group({
       itemNumber: ['', Validators.required],
-      productName: ['', Validators.required],
+      pharmacyId: ['', Validators.required],
+      name: ['', Validators.required],
+      category: ['', Validators.required],
       quantity: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0.01)]],
       expirationDate: ['', Validators.required]
@@ -39,22 +43,14 @@ export class AddMedicineComponent implements OnInit {
   }
 
 
-
-
-  onSubmit(): void {
-    if (this.medicineForm.valid) {
-      const newMedicine = {
-        itemNo: this.medicineForm.value.itemNumber,
-        productName: this.medicineForm.value.productName,
-        quantity: this.medicineForm.value.quantity,
-        price: this.medicineForm.value.price,
-        expirationDate: this.medicineForm.value.expirationDate,
-      };
-
-      this.dialogRef.close(newMedicine);
-    } else {
-      // Handle invalid form data here if needed.
-    }
+  onSubmit() {
+    const medicineForm = this.medicineForm.getRawValue();
+    const newMedicine = {
+      ...medicineForm,
+    };
+    this.medicineService.createMedicine(newMedicine).subscribe((response) => {
+      console.log(response);
+    });
   }
 
 

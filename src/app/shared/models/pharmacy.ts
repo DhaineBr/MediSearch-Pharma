@@ -1,6 +1,5 @@
 export interface Pharmacy {
   name: string;
-  // nameSlug: string;
   address: string;
   coords: string;
   storeHours: string;

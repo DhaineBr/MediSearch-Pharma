@@ -90,12 +90,12 @@
               <th>Action</th>
             </tr>
 
-            <ng-container *ngFor="let inventory of filteredInventory">
+            <ng-container *ngFor="let inventory of inventories; let i=index">
               <tr class="table-content">
                 <td>{{inventory.itemNumber}}</td>
                 <td>{{inventory.name}}</td>
                 <td>{{inventory.quantity}}</td>
-                <td>{{inventory.price}}</td>
+                <td>Php {{inventory.price | number:'1.2-2'}}</td>
                 <td>{{inventory.expirationDate | date}}</td>
 
 
@@ -103,7 +103,7 @@
                   <button id="edit"  matTooltip="Edit" (click)="openEdit(inventory)">
                     <i class="fa-solid fa-pen-to-square"></i>
                   </button>
-                  <button id="delete"  matTooltip="Archive">
+                  <button id="delete"  matTooltip="Archive" (click)="softDeleteMedicine(inventory)">
                     <i class="fa-solid fa-box-archive"></i>
                   </button>
                 </td>

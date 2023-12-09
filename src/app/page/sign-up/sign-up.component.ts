@@ -83,14 +83,6 @@ export class SignUpComponent implements OnInit {
   }
 
 
-  slugify(input: string): string {
-    return input
-      .toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^a-z0-9-]/g, '');
-  }
-
-
   onSubmit() {
 
     const pharmacyForm = this.userDataForm.getRawValue();

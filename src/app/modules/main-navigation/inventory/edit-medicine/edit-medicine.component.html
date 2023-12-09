@@ -5,27 +5,76 @@
 <mat-dialog-content class="custom-dialog-content">
   <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()" class="medicine-form">
     <label for="itemNumber">Item No.</label><br>
-    <span id="itemNumber">{{this.data.inventoryData.itemNo}}</span><br>
+    <input type="text"
+      name="itemNumber"
+      id="itemNumber"
+      class="form-control"
+      formControlName="itemNumber"
+      readonly
+      style="outline: none; box-shadow: none;"
+    />
+    <br>
+
+    <label for="pharmacyId">Pharmacy ID</label><br>
+    <input type="text"
+      name="pharmacyId"
+      id="pharmacyId"
+      class="form-control"
+      formControlName="pharmacyId"
+      readonly
+      style="outline: none; box-shadow: none;"
+    />
+    <br>
 
 
     <label for="productName">Product Name</label><br>
-    <input type="text" name="productName" id="productName" class="form-control" formControlName="productName" required /><br>
+    <input type="text"
+      name="name"
+      id="name"
+      class="form-control"
+      formControlName="name"
+      required
+    />
+    <br>
 
     <label for="quantity">Quantity</label><br>
-    <input type="number" name="quantity" id="quantity" class="form-control" formControlName="quantity" required /><br>
+    <input
+      type="number"
+      name="quantity"
+      id="quantity"
+      class="form-control"
+      formControlName="quantity"
+      required
+    />
+    <br>
 
     <label for="price">Price</label><br>
-    <input type="number" step="0.01" name="price" id="price" class="form-control" formControlName="price" required /><br>
+    <input
+      type="number"
+      step="0.01"
+      name="price"
+      id="price"
+      class="form-control"
+      formControlName="price"
+      required
+    />
+    <br>
 
 
     <label for="expirationDate">Expiration Date</label><br>
-    <input matInput [matDatepicker]="picker" class="date" placeholder="MM/DD/YYYY" formControlName="expirationDate" required />
+    <input
+      matInput [matDatepicker]="picker"
+      class="date"
+      placeholder="MM/DD/YYYY"
+      formControlName="expirationDate"
+      required
+    />
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
 
     <div class="footer">
       <button type="reset" class="reset">Reset</button>
-      <button type="submit" [disabled]="!medicineForm.valid">Confirm</button>
+      <button type="submit">Confirm</button>
     </div>
   </form>
 

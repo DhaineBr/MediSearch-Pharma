@@ -6,6 +6,6 @@ export interface Medicine {
   price: number,
   quantity: number,
   expirationDate: string,
-  reservationDate: string,
-  pharmacyId: number
+  pharmacyId: number,
+  selected?: boolean
 }
