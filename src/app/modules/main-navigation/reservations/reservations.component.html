@@ -25,22 +25,17 @@
             <th>Order ID</th>
             <th>Name</th>
             <th>Order</th>
-            <th>Contact No.</th>
             <th>Date & Time</th>
             <th>Total Price</th>
-            <th>Action</th>
+
           </tr>
           <ng-container *ngFor="let reservation of reservations">
             <tr class="table-content">
               <td style="font-weight: 500;">{{ reservation.id }}</td>
               <td>{{ reservation.user.name }}</td>
-              <td>{{ reservation.totalAmount }}</td>
-              <td>{{ reservation.createdAt }}</td>
+              <td>{{ reservation.cartContent }}</td>
               <td>{{ reservation.updatedAt | date }} | {{ reservation.updatedAt | date: 'h:mm a' }}</td>
               <td>P {{ reservation.totalAmount }}</td>
-              <td>
-                <button id="confirm" (click)="reservationDetails()"><i class="fa-regular fa-eye"></i></button>
-              </td>
             </tr>
           </ng-container>
         </table>

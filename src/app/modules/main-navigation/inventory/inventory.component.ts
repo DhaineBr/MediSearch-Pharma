@@ -39,7 +39,6 @@ export class InventoryComponent implements OnInit{
   }
 
 
-  //Get Request
   getAllMedicines() {
     this._medicines.getAllMedicines().subscribe((response) => {
       this.inventories = Array.isArray(response) ? response : [response];
@@ -135,12 +134,7 @@ export class InventoryComponent implements OnInit{
     }
 
 
-
-
-
 totalPrice: number = 0;
-
-
 
   calculateTotalPrice(): number {
     return this.selectedMedicines.reduce((total, selectedMedicine, i) => {

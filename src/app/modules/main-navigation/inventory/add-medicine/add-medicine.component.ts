@@ -33,7 +33,7 @@ export class AddMedicineComponent implements OnInit {
   initializeForm(): void {
     this.medicineForm = this.fb.group({
       itemNumber: ['', Validators.required],
-      pharmacyId: ['', Validators.required],
+      pharmacyId: [2, Validators.required],
       name: ['', Validators.required],
       category: ['', Validators.required],
       quantity: ['', Validators.required],

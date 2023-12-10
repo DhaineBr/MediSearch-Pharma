@@ -22,7 +22,7 @@ export class SignUpComponent implements OnInit {
       name: ['', [Validators.required]],
       email: [''],
       address: [''],
-      coords: [''],
+      coords: ['13.758447669619404, 121.05859497704944'],
       openingTime: [''],
       closingTime: [''],
       contactNumber: [''],

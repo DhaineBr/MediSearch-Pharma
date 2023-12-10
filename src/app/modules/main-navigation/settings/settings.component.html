@@ -1,9 +1,8 @@
-
-
 <div class="container">
   <div class="header">Settings</div>
 
   <div class="store-details-container">
+
     <div class="container-header">
       <div class="header-text">Store Details</div>
       <div class="button-container">
@@ -22,15 +21,16 @@
       </div>
     </div>
     <div class="right">
-      <label for="branchName">Branch Name</label><br />
-      <span id="branchName">TGP</span><br />
-      <label for="address">Address</label><br />
-      <span id="address">Brgy. 11, Batangas City</span><br />
-      <label for="storeHours">Store Hours</label><br />
-      <span id="storeHours">08:00 AM - 08:00 PM</span><br />
-      <label for="email">Contact No.</label><br />
-      <span id="email">09292204349</span>
+      <ng-container *ngFor="let keyValue of pharmacy | keyvalue">
+        <ng-container *ngIf="keyValue.key == 'name'
+        || keyValue.key == 'address' || keyValue.key == 'contactNumber' || keyValue.key == 'storeHours'"
+        >
+        <label for="branchName">{{ keyValue.key | titlecase }}</label><br />
+        <span id="branchName">{{ keyValue.value }}</span><br />
+        </ng-container>
+      </ng-container>
     </div>
+
   </div>
 
   <div class="account-details-container">
@@ -42,10 +42,16 @@
     </div>
 
     <div class="left">
-      <label for="email">Email Address</label><br />
+      <ng-container *ngFor="let keyValue of pharmacy | keyvalue">
+      <ng-container *ngIf="keyValue.key == 'email'
+      || keyValue.key == 'password'">
+
+      <label for="email">{{keyValue.key}}</label><br />
       <span id="email">medisearch@carl.com</span><br />
-      <label for="password">Password</label><br />
+      <label for="password">{{keyValue.key}}</label><br />
       <span id="password">password</span><br />
+      </ng-container>
+      </ng-container>
     </div>
   </div>
 </div>

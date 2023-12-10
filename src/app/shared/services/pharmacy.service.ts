@@ -14,7 +14,9 @@ export class PharmacyService {
     return this.http.get(`${environment.apiProdURL}/pharmacies`);
   }
 
-
+  public getPharmacyById(data: any) {
+    return this.http.get(`${environment.apiProdURL}/pharmacies/${data.id}`);
+  }
 
   public createPharmacy(data: any) {
     return this.http.post(`${environment.apiProdURL}/pharmacies/branch/register`, data);

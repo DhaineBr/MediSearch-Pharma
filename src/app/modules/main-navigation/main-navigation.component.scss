@@ -17,7 +17,7 @@ body  {
   background-image: linear-gradient(to right, #6BBD99 , #C4E8C2);
   position: relative;
   max-height: 100%;
-  overflow-y: hidden;
+  overflow-y: scroll;
   z-index: 997;
 }
 
@@ -113,4 +113,19 @@ a.sideButtons.active {
 
 .custom-tooltip {
   z-index: 999999 !important; /* Set your desired z-index value */
+}
+
+
+body::-webkit-scrollbar {
+  width: 0.25rem;
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #C0C0C0;
+  border-radius: 0.25rem;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #A9A9A9;
 }

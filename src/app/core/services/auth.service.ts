@@ -20,6 +20,6 @@ export class AuthService {
   }
 
   public getProfile(): Observable<UserDetails> {
-    return this.http.get<UserDetails>(`${environment.apiProdURL}/me`);
+    return this.http.get<UserDetails>(`${environment.apiProdURL}/auth/my-profile`);
   }
 }
