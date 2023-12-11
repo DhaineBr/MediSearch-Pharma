@@ -9,7 +9,7 @@
           </div>
           <div class="figure">
             <div class="window">
-              <h2>22</h2>
+              <h2>{{ getLowStock() }}</h2>
             </div>
           </div>
         </div>
@@ -19,7 +19,7 @@
           </div>
           <div class="figure">
             <div class="window">
-              <h2>7</h2>
+              <h2>{{ getReservationsCount() }}</h2>
             </div>
           </div>
         </div>
@@ -29,7 +29,7 @@
           </div>
           <div class="figure">
             <div class="window">
-              <h2>4</h2>
+              <h2>{{ getExpiredCount() }}</h2>
             </div>
           </div>
         </div>
@@ -53,12 +53,12 @@
                 <th>Quantity</th>
                 <th>Exp. Date</th>
               </tr>
-              <ng-container *ngFor="let pharmacy of pharmacies">
-              <tr>
-                <td>{{pharmacy.rank}}</td>
-                <td>{{pharmacy.pharmacyName}}</td>
-                <td>{{pharmacy.pharmacyAddress}}</td>
-                <td>{{pharmacy.rating}}</td>
+              <ng-container *ngFor="let expiringMedicine of getExpiringWithinMonth()">
+              <tr *ngIf="expiringMedicine.quantity !== 0">
+                <td>{{expiringMedicine.itemNumber}}</td>
+                <td>{{expiringMedicine.name}}</td>
+                <td>{{expiringMedicine.quantity}}</td>
+                <td>{{expiringMedicine.expirationDate | date}}</td>
               </tr>
               </ng-container>
             </table>

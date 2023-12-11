@@ -5,6 +5,7 @@ import { EditMedicineComponent } from './edit-medicine/edit-medicine.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MedicineService } from 'src/app/shared/services/medicine.service';
 import { Medicine } from 'src/app/shared/models/medicine';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -17,10 +18,14 @@ export class InventoryComponent implements OnInit{
   inputQuantities: number[] = [];
   inventories: Medicine[] = [];
   filteredInventory: Medicine[] = [];
+  errorMessage: string | null = null;
 
   summaryForm: FormGroup;
 
-  constructor(public dialog: MatDialog, private formBuilder: FormBuilder, private _medicines : MedicineService) {
+  constructor(public dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private _medicines : MedicineService,
+    private snackBar: MatSnackBar) {
     this.summaryForm = this.formBuilder.group({
       paymentAmount: ['']
     });
@@ -31,28 +36,68 @@ export class InventoryComponent implements OnInit{
   selectedMedicines: any[] = [];
   searchQuery: string = '';
 
+  isExpired(expirationDate: string | Date): boolean {
+    const currentDate = new Date();
+    const parsedExpirationDate = typeof expirationDate === 'string' ? new Date(expirationDate) : expirationDate;
+    return parsedExpirationDate < currentDate;
+  }
+
+
+  sortInventoriesByExpiration(): void {
+    this.inventories.sort((a, b) => {
+      const aExpired = this.isExpired(a.expirationDate);
+      const bExpired = this.isExpired(b.expirationDate);
+
+
+      if (aExpired && !bExpired) {
+        return -1;
+      } else if (!aExpired && bExpired) {
+        return 1;
+      }
+
+      if (a.quantity <= 25 && !(b.quantity <= 25)) {
+        return -1;
+      } else if (!(a.quantity <= 25) && b.quantity <= 25) {
+        return 1;
+      }
+
+      return 0;
+    });
+  }
+
+
   ngOnInit(): void {
+
     this.getAllMedicines();
-    this.clearSelectedMedicines();
     this.inputQuantities = Array(this.inventories.length).fill(1);
     console.log('Initialized inputQuantities:', this.inputQuantities);
+
   }
 
 
   getAllMedicines() {
     this._medicines.getAllMedicines().subscribe((response) => {
       this.inventories = Array.isArray(response) ? response : [response];
+      this.sortInventoriesByExpiration();
       console.log(this.inventories);
+
+
+      this.inputQuantities = Array(this.inventories.length).fill(1);
     });
   }
+
+
 
   softDeleteMedicine(medicine: Medicine) {
     this._medicines.softDeleteMedicine(medicine).subscribe(
       () => {
-        console.log(`Medicine with ID ${medicine.id} soft deleted successfully`);
+        const archive = "Product archived successfully.";
+        this.showSuccessMessage(archive);
+
       },
       (error) => {
-        console.error('Error deleting medicine:', error);
+        const archiveError = "Unexpected error: cannot archive product"
+        this.openErrorSnackbar(archiveError)
       }
     );
   }
@@ -120,6 +165,9 @@ export class InventoryComponent implements OnInit{
       if (!alreadySelected) {
         this.selectedMedicines.push(inventory);
         console.log(`Added Medicine: ${inventory.name}`);
+      } else {
+        const selectedMessage = "Product already selected.";
+        this.openErrorSnackbar(selectedMessage)
       }
     }
 
@@ -153,7 +201,8 @@ totalPrice: number = 0;
         this.inputQuantities[formIndex]++;
         this.updateTotal();
       } else {
-        console.log('Cannot increment quantity beyond the maximum.');
+        const maximum = 'Maximum quantity reached.';
+        this.openErrorSnackbar(maximum)
       }
     }
     console.log('Updated Quantity:', this.inputQuantities);
@@ -176,14 +225,28 @@ totalPrice: number = 0;
   const totalPrice = this.calculateTotalPrice();
 
   if (paymentAmount < totalPrice) {
-    console.error("Payment amount cannot exceed the total price.");
+    const errorMessage = "Insufficient Payment";
+    this.openErrorSnackbar(errorMessage);
     return;
   } else{
-  this.changeAmount = paymentAmount - totalPrice;
-  console.log(this.changeAmount);
+    this.changeAmount = paymentAmount - totalPrice;
+    const successful = "Transaction Successful";
+    this.showSuccessMessage(successful)
   }
   }
 
+  openErrorSnackbar(errorMessage: string): void {
+    this.snackBar.open(errorMessage, 'Dismiss', {
+      duration: 5000,
+    });
+  }
+
+  showSuccessMessage(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 5000,
+      panelClass: ['success-snackbar'],
+    });
+  }
 
 }
 

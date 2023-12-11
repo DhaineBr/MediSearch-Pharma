@@ -30,10 +30,11 @@
 
           </tr>
           <ng-container *ngFor="let reservation of reservations">
-            <tr class="table-content">
+            <tr *ngIf="reservation.isReservation === true && reservation.isFulfilled === false"
+            class="table-content">
               <td style="font-weight: 500;">{{ reservation.id }}</td>
               <td>{{ reservation.user.name }}</td>
-              <td>{{ reservation.cartContent }}</td>
+              <td>{{ reservation.cartContent[0].medicineId }}</td>
               <td>{{ reservation.updatedAt | date }} | {{ reservation.updatedAt | date: 'h:mm a' }}</td>
               <td>P {{ reservation.totalAmount }}</td>
             </tr>

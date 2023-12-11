@@ -42,14 +42,11 @@
     </div>
 
     <div class="left">
-      <ng-container *ngFor="let keyValue of pharmacy | keyvalue">
-      <ng-container *ngIf="keyValue.key == 'email'
-      || keyValue.key == 'password'">
+      <ng-container *ngFor="let keyValue of pharmacy.user | keyvalue">
+      <ng-container *ngIf="keyValue.key == 'email'">
 
       <label for="email">{{keyValue.key}}</label><br />
-      <span id="email">medisearch@carl.com</span><br />
-      <label for="password">{{keyValue.key}}</label><br />
-      <span id="password">password</span><br />
+      <span id="email">{{ keyValue.value }}</span><br />
       </ng-container>
       </ng-container>
     </div>

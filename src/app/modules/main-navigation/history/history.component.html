@@ -7,7 +7,7 @@
   <div class="topnav">
     <div class="search-container">
       <!-- [(ngModel)]="searchText" add later -->
-      <input type="text" placeholder="Search.." [(ngModel)]="searchQuery" (input)="filterHistory()"/>
+      <input type="text" placeholder="Search.." [(ngModel)]="searchQuery"/>
       <button id="searchButton">
         <i class="fa-solid fa-magnifying-glass" style="color: white; font-size: 1.25vw"></i>
       </button>
@@ -24,16 +24,17 @@
           <th>Date & Time</th>
           <th>Amount</th>
         </tr>
-        <tr *ngFor="let record of filteredHistoryRecords" class="table-content">
-          <td>{{ record.referenceNo }}</td>
-          <td>{{ record.name }}</td>
-          <td>{{ record.contactNo }}</td>
-          <td>{{ record.dateTime }}</td>
-          <td>{{ record.amount }}</td>
+        <ng-container  *ngFor="let order of orderHistory">
+        <tr *ngIf="order.isFulfilled === true" class="table-content">
+          <td>{{ order.id }}</td>
+          <td>{{ order.user.name }}</td>
+          <td>{{ order.cartContent }}</td>
+          <td>{{ order.updatedAt | date }} | {{order.updatedAt |  date: 'h:mm a' }}</td>
+          <td>Php {{ order.totalAmount | number:'1.2-2'}}</td>
           <td>
-
           </td>
         </tr>
+        </ng-container>
       </table>
     </div>
   </div>

@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { MainNavigationRoutingModule } from './main-navigation-routing.module';
@@ -56,7 +57,8 @@ import { HttpBaseInterceptor } from 'src/app/shared/interceptors/http-base.inter
     MatFormFieldModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSnackBarModule
   ],
   providers: [
 

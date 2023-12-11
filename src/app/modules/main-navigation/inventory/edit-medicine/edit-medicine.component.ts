@@ -11,6 +11,8 @@ import { MedicineService } from 'src/app/shared/services/medicine.service';
 })
 export class EditMedicineComponent implements OnInit {
   medicineForm!: FormGroup;
+  inventory: Medicine = {} as Medicine;
+
 
 
   constructor(
@@ -35,7 +37,7 @@ export class EditMedicineComponent implements OnInit {
       quantity: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0.01)]],
       expirationDate: ['', Validators.required],
-      pharmacyId: ['', Validators.required]
+      medicineId: [this.inventory.id, Validators.required]
     });
 
     if (this.data.inventoryData) {
@@ -45,7 +47,7 @@ export class EditMedicineComponent implements OnInit {
         quantity: this.data.inventoryData.quantity,
         price: this.data.inventoryData.price,
         expirationDate: this.data.inventoryData.expirationDate,
-        pharmacyId: this.data.inventoryData.pharmacyId
+        medicineId: this.data.inventoryData.id
       });
     }
   }

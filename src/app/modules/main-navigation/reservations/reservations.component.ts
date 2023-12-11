@@ -14,16 +14,12 @@ export class ReservationsComponent implements OnInit {
   reservations: Order[] = [];
   filteredReservations: Order[] = [];
 
-  upcomingTransactionsCount: number = 10;
-  fulfilledTransactionsCount: number = 0;
-  cancelledTransactionsCount: number = 1;
 
   searchQuery: string = '';
   constructor(public dialog: MatDialog, private _orders : OrdersService) {}
 
   ngOnInit(): void {
     this.getAllOrders();
-    this.filteredReservations = this.reservations;
   }
 
 

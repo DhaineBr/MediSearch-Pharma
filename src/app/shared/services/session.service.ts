@@ -51,7 +51,6 @@ export class SessionService {
 	}
 
 	logout() {
-
 		localStorage.removeItem('user_loginSession');
 		this.router.navigate(['']);
 		window.location.reload();

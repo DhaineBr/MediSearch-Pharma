@@ -6,8 +6,9 @@
         <div class="left-header">
           Recently Added
         </div>
-        <ng-container *ngFor="let inventory of inventories">
-          <div class="left-content">
+        <ng-container *ngFor="let inventory of inventories.slice(0, 20)">
+
+          <div class="left-content" *ngIf="inventory.quantity !== 0">
             <button class="medicine-button" (click)="selectMedicine(inventory)">{{ inventory.name }}</button>
           </div>
         </ng-container>
@@ -46,10 +47,10 @@
 
         <div class="bottom-panel">
           <div class="total">
-            <span style="font-weight: 600; color: #55665e">Total:     Php <span formControlName="totalPrice">{{ calculateTotalPrice() }}</span></span>
+            <span style="font-weight: 600; color: #55665e">Total:     Php <span>{{ calculateTotalPrice() }}</span></span>
           </div>
           <div class="payment">
-            <input type="text" class="payment-input" formControlName="paymentAmount">
+            <input type="number" class="payment-input" formControlName="paymentAmount">
             <button class="confirm-payment" (click)="calculateChange()">Pay</button>
           </div>
           <div class="change">
@@ -82,6 +83,7 @@
         <div class="medicine-list-container">
           <table class="medicine-list">
             <tr class="table-header">
+              <th>ID</th>
               <th>Item No.</th>
               <th>Product Name</th>
               <th>Category</th>
@@ -92,7 +94,13 @@
             </tr>
 
             <ng-container *ngFor="let inventory of inventories; let i=index">
-              <tr class="table-content">
+              <tr class="table-content" [ngClass]="{
+                'out-of-stock': inventory.quantity == 0,
+                'low-quantity': inventory.quantity <= 25,
+                'expired': isExpired(inventory.expirationDate),
+                'blinking': isExpired(inventory.expirationDate)
+              }">
+                <td>{{inventory.id}}</td>
                 <td>{{inventory.itemNumber}}</td>
                 <td>{{inventory.name}}</td>
                 <td>{{inventory.category}}</td>

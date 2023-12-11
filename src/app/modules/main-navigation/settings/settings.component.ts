@@ -11,7 +11,7 @@ import { PharmacyService } from 'src/app/shared/services/pharmacy.service';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit{
-  pharmacy: Pharmacy[] = [];
+  pharmacy: Pharmacy={} as Pharmacy;
 
   constructor(public dialog: MatDialog, private _pharmacies : PharmacyService) {}
 
@@ -28,6 +28,8 @@ export class SettingsComponent implements OnInit{
       console.log(this.pharmacy);
     });
   }
+
+
 
   editStore() {
     this.dialog.open(StoreDetailsComponent, {

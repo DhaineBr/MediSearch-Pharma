@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MedicineService } from 'src/app/shared/services/medicine.service';
 import { Medicine } from 'src/app/shared/models/medicine';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-archive',
@@ -16,7 +16,10 @@ export class ArchiveComponent implements OnInit{
   archives: Medicine[] = [];
   selectedArchives: Medicine[] = [];
   filteredArchive: Medicine[] = [];
-  constructor(public dialog: MatDialog, private formBuilder: FormBuilder, private _medicines : MedicineService) {}
+  constructor(public dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private _medicines : MedicineService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     // this.archives = this.generateDummyData(10);
@@ -83,10 +86,12 @@ toggleItemSelection(archive: Medicine) {
   restoreDeletedMedicine(archive: Medicine) {
     this._medicines.restoreDeletedMedicine(archive).subscribe(
       () => {
-        console.log(`Medicine with name ${archive.name} restored successfully`);
+        const restore = 'Product restored successfully';
+        this.showSuccessMessage(restore)
       },
       (error) => {
-        console.error('Error restoring medicine:', error);
+        const restoreError = 'Unexpected error: Could not restore medicine.';
+        this.openErrorSnackbar(restoreError)
       }
     );
   }
@@ -94,10 +99,12 @@ toggleItemSelection(archive: Medicine) {
   hardDeleteMedicine(archive: Medicine) {
     this._medicines.hardDeleteMedicine(archive).subscribe(
       () => {
-        console.log(`Medicine with name ${archive.name} permanently deleted`);
+        const deleted = 'Product deleted successfully';
+        this.showSuccessMessage(deleted)
       },
       (error) => {
-        console.error('Error deleting medicine:', error);
+        const deleteError = 'Unexpected error: Could not delete medicine.';
+        this.openErrorSnackbar(deleteError)
       }
     );
   }
@@ -115,7 +122,6 @@ toggleItemSelection(archive: Medicine) {
 
   permanentlyDelete() {
     const selectedArchives = this.filteredArchive.filter((archive) => archive.selected);
-
     for (const archive of selectedArchives) {
       const index = this.filteredArchive.indexOf(archive);
       if (index !== -1) {
@@ -123,4 +129,19 @@ toggleItemSelection(archive: Medicine) {
       }
     }
   }
+
+  openErrorSnackbar(errorMessage: string): void {
+    this.snackBar.open(errorMessage, 'Dismiss', {
+      duration: 5000,
+    });
+  }
+
+  showSuccessMessage(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 5000,
+      panelClass: ['success-snackbar'],
+    });
+  }
+
+
 }

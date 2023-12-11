@@ -1,11 +1,13 @@
 export interface Medicine {
-  id: string,
+  id: number,
   itemNumber: string,
   name: string,
   category: string,
   price: number,
   quantity: number,
-  expirationDate: string,
+  expirationDate: Date,
   pharmacyId: number,
-  selected?: boolean
+  selected?: boolean,
+  createdAt: Date,
+  reservationDate: Date
 }
