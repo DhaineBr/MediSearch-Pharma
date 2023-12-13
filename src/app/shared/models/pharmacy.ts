@@ -15,8 +15,8 @@ export interface Pharmacy {
     password: string,
     userType: string,
     accountVerified: boolean,
-    createdAt: string,
-    updatedAt: string,
-    deletedAt: string
+    createdAt: Date,
+    updatedAt: Date,
+    deletedAt: Date
 }
 };

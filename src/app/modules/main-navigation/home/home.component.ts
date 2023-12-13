@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
     this.getAllOrders()
     this.getAllMedicines();
-
   }
 
   getAllMedicines() {
