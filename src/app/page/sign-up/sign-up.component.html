@@ -74,5 +74,8 @@
         <button class="rigisterBtn" type="submit" id="submitButton">Submit ></button>
       </div>
     </form>
+    <div *ngIf="loading" class="loading-overlay">
+      <div class="spinner"></div>
+    </div>
   </div>
 </body>

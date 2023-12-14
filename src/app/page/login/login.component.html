@@ -10,13 +10,17 @@
       <br />
       <button id="loginButton" type="submit" (click)="login()">Login</button>
     </form>
+
+    <div *ngIf="loading" class="loading-overlay">
+      <div class="spinner"></div>
+    </div>
   </fieldset>
   <div class="extension">
     <div>
       <ng-container *ngIf="!showInputField">
-        <button (click)="showInputField = true" class="button-transition">
+        <!-- <button (click)="showInputField = true" class="button-transition">
           Forgot Password?
-        </button>
+        </button> -->
       </ng-container>
 
       <ng-container *ngIf="showInputField">

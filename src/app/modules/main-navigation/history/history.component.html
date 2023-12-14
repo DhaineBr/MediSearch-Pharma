@@ -19,7 +19,6 @@
         <tr class="table-header">
           <th>Reference No.</th>
           <th>Name</th>
-          <th>Contact No.</th>
           <th>Date & Time</th>
           <th>Amount</th>
         </tr>
@@ -27,7 +26,6 @@
         <tr *ngIf="order.isFulfilled === true" class="table-content">
           <td>{{ order.id }}</td>
           <td>{{ order.user.name }}</td>
-          <td>{{ order.cartContent }}</td>
           <td>{{ order.updatedAt | date }} | {{order.updatedAt |  date: 'h:mm a' }}</td>
           <td>Php {{ order.totalAmount | number:'1.2-2'}}</td>
           <td>

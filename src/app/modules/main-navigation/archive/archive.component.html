@@ -29,12 +29,14 @@
             <td>{{archive.itemNumber}}</td>
             <td>{{archive.name}}</td>
             <td>{{archive.quantity}}</td>
-            <td>{{archive.price}}</td>
+            <td>Php {{archive.price}}</td>
             <td>{{archive.expirationDate | date}}</td>
           </tr>
 
         </ng-container>
-
+        <div *ngIf="loading" class="loading-overlay">
+          <div class="spinner"></div>
+        </div>
         </table>
       </div>
     </div>

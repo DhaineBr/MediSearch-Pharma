@@ -120,7 +120,13 @@
               </tr>
 
             </ng-container>
+
+              <div *ngIf="loading" class="loading-overlay">
+                <div class="spinner"></div>
+              </div>
           </table>
+
+
         </div>
 
       </div>

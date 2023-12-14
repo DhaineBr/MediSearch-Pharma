@@ -12,6 +12,7 @@ export class ArchiveComponent implements OnInit{
 
   archives: Medicine[] = [];
   selectedArchives: Medicine[] = [];
+  loading = false;
   constructor(private _medicines : MedicineService,
     private snackBar: MatSnackBar) { }
 
@@ -56,6 +57,8 @@ export class ArchiveComponent implements OnInit{
     }
 
   restoreSelectedMedicines() {
+    this.loading = true;
+
     this.selectedArchives.forEach((archive) => {
       this.restoreDeletedMedicine(archive);
     });
@@ -72,29 +75,40 @@ export class ArchiveComponent implements OnInit{
   }
 
   restoreDeletedMedicine(archive: Medicine) {
+    this.loading = true;
+
     this._medicines.restoreDeletedMedicine(archive).subscribe(
       () => {
         const restore = 'Product restored successfully';
-        this.showSuccessMessage(restore)
+        this.showSuccessMessage(restore);
       },
       (error) => {
         const restoreError = 'Unexpected error: Could not restore medicine.';
-        this.openErrorSnackbar(restoreError)
+        this.openErrorSnackbar(restoreError);
       }
-    );
+    ).add(() => {
+      this.loading = false;
+   });
+
+   window.location.reload();
   }
 
   hardDeleteMedicine(archive: Medicine) {
+    this.loading = true;
+
     this._medicines.hardDeleteMedicine(archive).subscribe(
       () => {
         const deleted = 'Product deleted successfully';
-        this.showSuccessMessage(deleted)
+        this.showSuccessMessage(deleted);
       },
       (error) => {
         const deleteError = 'Unexpected error: Could not delete medicine.';
-        this.openErrorSnackbar(deleteError)
+        this.openErrorSnackbar(deleteError);
       }
-    );
+    ).add(() => {
+      this.loading = false;
+    });
+    window.location.reload();
   }
 
 

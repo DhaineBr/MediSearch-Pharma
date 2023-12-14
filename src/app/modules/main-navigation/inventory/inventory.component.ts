@@ -19,6 +19,7 @@ export class InventoryComponent implements OnInit{
   inventories: Medicine[] = [];
   filteredInventory: Medicine[] = [];
   errorMessage: string | null = null;
+  loading = false;
 
   summaryForm: FormGroup;
 
@@ -89,18 +90,24 @@ export class InventoryComponent implements OnInit{
 
 
   softDeleteMedicine(medicine: Medicine) {
+    this.loading = true;
+
     this._medicines.softDeleteMedicine(medicine).subscribe(
       () => {
         const archive = "Product archived successfully.";
         this.showSuccessMessage(archive);
-
       },
       (error) => {
-        const archiveError = "Unexpected error: cannot archive product"
-        this.openErrorSnackbar(archiveError)
+        const archiveError = "Unexpected error: cannot archive product";
+        this.openErrorSnackbar(archiveError);
       }
-    );
+    ).add(() => {
+      this.loading = false;
+    });
+
+    window.location.reload();
   }
+
 
   filterInventory() {
     this.filteredInventory = this.inventories.filter((inventory) =>
